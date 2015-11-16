@@ -1,7 +1,10 @@
 % Implements the MFROLS algorithm (see page 97 from Billings, SA (2013))
 % p is the matrix of candidates
 % y is the output vector
-% pho  
+% phoLinear is the stop criteria, in the case of flag=1, duing the first 45 steps
+% phoNLinear is the stop criteria
+% flag can be 0 or 1. It is important if you want to obtain GFRF from your identified model. It
+% guarantees that at least one term of he identified model will be a linear one. Normally flag=0 is OK
 function mfrols(p, y, phoLinear, phoNLinear, flag)
     
     global l;
