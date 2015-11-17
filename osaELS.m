@@ -1,4 +1,5 @@
-%% Implements the one-step-ahead prediction algorithm for the ELS algorithm (page 124 from Billings, SA (2013)). The difference
+%% Implements the one-step-ahead prediction algorithm for the ELS algorithm (page 124 from Billings, SA (2013)). 
+%The difference
 % to the osa function is that this function incorporates the residue of the identification.
 % u is the input signal
 % y is the output signal

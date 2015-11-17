@@ -40,7 +40,8 @@ function mfrols(p, y, phoLinear, phoNLinear, flag)
                 %% The Gram-Schmidt method was implemented in a modified way, as shown in Rice, JR(1966)
                  qs(:,m,j) = p(:,m,j);
                  for r=1:s-1
-                     qs(:,m,j) = qs(:,m,j) - (squeeze(q(:,r,j))'*qs(:,m,j))/(squeeze(q(:,r,j))'*squeeze(q(:,r,j)))*squeeze(q(:,r,j));
+                     qs(:,m,j) = qs(:,m,j) - (squeeze(q(:,r,j))'*qs(:,m,j))/...
+                         (squeeze(q(:,r,j))'*squeeze(q(:,r,j)))*squeeze(q(:,r,j));
                  end
                 %%  
                 gs(j,m) = (y(:,j)'*squeeze(qs(:,m,j)))/(squeeze(qs(:,m,j))'*squeeze(qs(:,m,j)));

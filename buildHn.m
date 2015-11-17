@@ -46,12 +46,14 @@ if (order==1)
     for l1 = 1:maxLag
            if (exist('c_01', 'var'))
                 if (length(c_01) >= l1)
-                    eval(['numH(' fvector{order} ') = numH(' fvector{order} ') + c_01(' lvector{order} ') * exp(-1j * l1 * 2 * pi * f1 / fs);']);
+                    eval(['numH(' fvector{order} ') = numH(' fvector{order} ') + c_01(' lvector{order} ...
+                        ') * exp(-1j * l1 * 2 * pi * f1 / fs);']);
                 end
             end
         if (exist('c_10', 'var'))
             if (length(c_10) >= l1)
-                eval(['denH(' fvector{order} ') = denH(' fvector{order} ') + c_10(' lvector{order} ') * exp(-1j * l1 * 2 * pi * f1 / fs);'])
+                eval(['denH(' fvector{order} ') = denH(' fvector{order} ') + c_10(' lvector{order} ...
+                    ') * exp(-1j * l1 * 2 * pi * f1 / fs);'])
             end
         end
     end
@@ -115,7 +117,8 @@ else
     
     %%
     eval(['syms inputComponent(' fvector{n} ')']); % Component of the GFRF related to the input signal
-    eval(['syms mixedComponent(' fvector{n} ')']); % Component of the GFRF related to the terms with input and output signals multiplied
+    eval(['syms mixedComponent(' fvector{n} ')']); % Component of the GFRF related to the terms with input and output 
+                                                   %signals multiplied
     eval(['syms outputComponent(' fvector{n} ')']); % Component of the GFRF related to the output signal
     eval(['syms denH(' fvector{n} ')']); % Denominator of the GFRF
     eval(['syms numH(' fvector{n} ')']); % Numerator of the GFRF
@@ -177,8 +180,9 @@ else
                                 lNvector = [lNvector, ',l' num2str(j) '(k)'];
                             end
                         end
-                        eval(['mixedComponent(' fvector{n} ') = mixedComponent(' fvector{n} ') + c_'  num2str(p) '' num2str(q) '(' lNvector ') *' ...
-                            ' expFreqLag * Hnn{' num2str(n-q) ',' num2str(p) '}(' fvector{n-q} ',' lPvector ');'])
+                        eval(['mixedComponent(' fvector{n} ') = mixedComponent(' fvector{n} ') + c_'  num2str(p) '' ...
+                            num2str(q) '(' lNvector ') * expFreqLag * Hnn{' num2str(n-q) ',' num2str(p) '}(' fvector{n-q} ...
+                            ',' lPvector ');'])
                     end
                 end
             end

@@ -1,8 +1,10 @@
-%% function to build the P matrix for the FROLS identification process of the residue from the system identification of the signals
+%% function to build the P matrix for the FROLS identification process of the residue from the system identification 
+%of the signals
 % u is the input signal
 % y is the output signal
 % e is the residue signal
-% degree is the maximal polynomial degree that you want the FROLS method to look for (it has been tested until the 9th degree)
+% degree is the maximal polynomial degree that you want the FROLS method to look for (it has been tested until the 9th 
+%degree)
 % mu is the maximal lag of the input signal
 % my is the maximal lag of the output signal
 % me is the maximal lag of the residue signal

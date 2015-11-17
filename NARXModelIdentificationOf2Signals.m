@@ -1,22 +1,29 @@
-%% This function performs the identification of a NARX model that represents the dynamic of the system with signal1 as input and signal2 as output
-% signal1 is the input signal. It can contain multiple trials of the same system. Each trial must be in one column of the signal1 matrix.
-% signal2 is the output signal. It can contain multiple trials of the same system. Each trial must be in one column of the signal2 matrix. 
+%% This function performs the identification of a NARX model that represents the dynamic of the system with signal1 as 
+%input and signal2 as output
+% signal1 is the input signal. It can contain multiple trials of the same system. Each trial must be in one column of 
+%the signal1 matrix.
+% signal2 is the output signal. It can contain multiple trials of the same system. Each trial must be in one column of 
+%the signal2 matrix. 
 %Each column of signal2 must be correspondent to the same column number of signal1
-% degree is the maximal polynomial degree that you want the FROLS method to look for (it has been tested until the 9th degree)
+% degree is the maximal polynomial degree that you want the FROLS method to look for (it has been tested until the 
+%9th degree)
 % mu is the maximal lag of the input signal
 % my is the maximal lag of the output signal
 % delay is how much lags you want to not consider in the input terms. It comes from a previous knowledge of your system
-% dataLength is the number of steps of each column of the signal1 and 2 matrices to consider during the identification of the system.
+% dataLength is the number of steps of each column of the signal1 and 2 matrices to consider during the identification 
+%of the system.
 %Normally a very high number do not leads to good results. 400 to 600 should be fine.
 % divisions is the number of data parts (of dataLength length) to consider from each trial (each column) of the signals.
 % phoL is the stop criteria, in the case of flag=1 (see the mfrols file), duing the first 45 steps
 % pho is the stop criteria 
-% Da is a vector in which each element is a string with a term found during the system idetification. u is the input signal, y is the output signal
+% Da is a vector in which each element is a string with a term found during the system idetification. u is the input 
+%signal, y is the output signal
 % a is a vector with the coefficients of the chosen terms during the identification of the system
 % l is a vector with the indices of the chosen terms during the identification of the system
 
 
-function [Da, a, la, ERRs] = NARXModelIdentificationOf2Signals(signal1, signal2, degree, mu, my, delay, dataLength, divisions, phoL, pho)
+function [Da, a, la, ERRs] = NARXModelIdentificationOf2Signals(signal1, signal2, degree, mu, my, delay, dataLength, ...
+    divisions, phoL, pho)
 
 flag = 0;
 

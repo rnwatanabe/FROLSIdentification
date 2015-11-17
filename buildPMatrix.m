@@ -1,7 +1,8 @@
 %% function to build the P matrix for the FROLS identification process 
 % u is the input signal
 % y is the output signal
-% degree is the maximal polynomial degree that you want the FROLS method to look for (it has been tested until the 9th degree)
+% degree is the maximal polynomial degree that you want the FROLS method to look for (it has been tested until the
+%9th degree)
 % mu is the maximal lag of the input signal
 % my is the maximal lag of the output signal
 % delay is how much lags you want to not consider in the input terms. It comes from a previous knowledge of your system

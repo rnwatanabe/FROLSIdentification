@@ -4,14 +4,17 @@
 % Mp is the number of terms in the identified model, without the residue
 % u is the input vector
 % y is the output vector
-% delta is the stop criteria to the optimization of the coefficient values (is the  difference between the coefficients form this
+% delta is the stop criteria to the optimization of the coefficient values (is the  difference between the coefficients 
+%form this
 %and the last step).
 % degree is the maximal polynomial degree of the model
 % degreen is the maximal polynomial degree of the residue model
 % maxLag is the maximal Lag existent in the model
-% xi is the residue signal of the last step. In the first call you can simply put a vector of zeros of the same length of u.
+% xi is the residue signal of the last step. In the first call you can simply put a vector of zeros of the same length of 
+%u.
 % I are the cells with the vector corresponding to each model term, obtained from the modelLags function
-% beta is the coefficients vector of the last step of the ELS execution. In the first call, you can put the coefficients vector originated from the FROLS
+% beta is the coefficients vector of the last step of the ELS execution. In the first call, you can put the coefficients
+%vector originated from the FROLS
 %identification or other method that you ave used.
 % p is the matrix pp (in the case of t=0) or the concatenation of pp and pn (otherwise)
 % betan is the the coefficients vector found in this step of the ELS execution.
