@@ -1,9 +1,14 @@
+%% Implements the basic Orthogonal Least Squares Algorithm. 
+% p is the matrix of the regressors (one regressor per column)
+% y is a the output vector
+% beta is a vector with the coefficients for each regressor
+
 function beta = ols(p,y)       
     M=size(p, 2);
     A=zeros(M,M,size(p,3));
     W=zeros(size(p,1), M,size(p, 3));
     for j=1:size(p,3)
-         %% The Gram-Schmidt method was implemented in a modified way, as shown in Rice, JR(1966), for numerical stability purposes
+        %% The Gram-Schmidt method was implemented in a modified way, as shown in Rice, JR(1966), for numerical stability purposes
         Wk(:,:,j) = squeeze(p(:,:,j));
         for m=1:M
             W(:,m,j) = Wk(:,m,j);
