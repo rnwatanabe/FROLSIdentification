@@ -5,6 +5,8 @@
 % mu is the maximal lag of the input signal
 % my is the maximal lag of the output signal
 % delay is how much lags you want to not consider in the input terms. It comes from a previous knowledge of your system
+% p is the matrix used in the identification process by the FROLS algorithm. 
+% D is a vector of strings with candidate terms. Each element of D corresponds to a column of the P matrix.
 
 function [p, D] = buildPMatrix(u, y, degree, mu, my, delay)
     N=length(u);

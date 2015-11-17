@@ -11,6 +11,9 @@
 % divisions is the number of data parts (of dataLength length) to consider from each trial (each column) of the signals.
 % phoL is the stop criteria, in the case of flag=1 (see the mfrols file), duing the first 45 steps
 % pho is the stop criteria 
+% Da is a vector in which each element is a string with a term found during the system idetification. u is the input signal, y is the output signal
+% a is a vector with the coefficients of the chosen terms during the identification of the system
+% l is a vector with the indices of the chosen terms during the identification of the system
 
 
 function [Da, a, la, ERRs] = NARXModelIdentificationOf2Signals(signal1, signal2, degree, mu, my, delay, dataLength, divisions, phoL, pho)
