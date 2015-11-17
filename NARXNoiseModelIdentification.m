@@ -65,14 +65,11 @@ function [Dn, an, ln] = NARXNoiseModelIdentification(signal1, signal2, degree, m
        mfrols(pn, xi_output, 1e-5, pho, 0);
    end
 %%
-   err=err(1:M0)'
+   err=err(1:M0)';
    l=l(1:M0)';
    ln = l;
    Dn=D(l)';
    for i = 1:subjects
     an(:,i) = mean(beta(:,(i-1)*divisions+1:i*divisions), 2);
-   end
-   
-   
-   
+   end     
 end

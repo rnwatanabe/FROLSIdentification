@@ -64,7 +64,7 @@ else
     mfrols(p, output, phoL, pho, flag);
 end
 %%
-err=err(1:M0)'
+err=err(1:M0)';
 l=l(1:M0)';
 la = l;
 Da=D(l)';

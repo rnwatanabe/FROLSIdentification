@@ -64,12 +64,11 @@ function [p, betan, xin, yest] = els(pp, pn, Mp, u, y, delta, degree, degreen, m
         pn(:,:,j) = p11(:,Mp+1:end);   
         clear p11
         difference(j) = sum(abs(betan(1:Mp,j) - beta(1:Mp,j))./abs(betan(1:Mp,j)));
-    end      
+    end       
     if (max(difference) > delta && t<10)
-        max(difference)
         clear xi;
         clear W Wk yest  xi
-        t = t + 1
+        t = t + 1;
         [p, betan, xin, yest] = els(pp(2*maxLag+1:end,:,:), pn, Mp,...
             u(2*maxLag+1:end,:), y(2*maxLag+1:end,:), ...
             delta, degree, degreen, maxLag, xin(maxLag+1:end,:),I, betan);

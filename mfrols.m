@@ -16,7 +16,6 @@ function mfrols(p, y, phoLinear, phoNLinear, flag)
     gs=zeros(L,M);
     ERR=zeros(L,M);
     qs=zeros(size(p));
-    s
     %%
     if (s<=45 && flag == 1)
             mBegin = 1;
@@ -32,7 +31,6 @@ function mfrols(p, y, phoLinear, phoNLinear, flag)
                 pho = phoNLinear;
             end    
     end   
-    pho
     %%
     for j=1:L
         sigma = y(:,j)'*y(:,j);
@@ -64,7 +62,7 @@ function mfrols(p, y, phoLinear, phoNLinear, flag)
         q(:, s,j) = qs(:,l(s),j);
         g(j,s) = gs(j,l(s));
     end    
-    ESR = ESR - err(s)
+    ESR = ESR - err(s);
     %D{l(s)}
     %% recursive call 
    if (err(s) >= pho && s < min(M, 70))
