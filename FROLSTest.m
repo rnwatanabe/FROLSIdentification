@@ -6,7 +6,7 @@ close all
 identifyModel = true;
 identifyNoise = true;
 identifyComplete = true;
-computeGFRF = true;
+computeGFRF = true; % if you do not have the Symbolic Toolbox,set this to false. The other parts of the system identification will work normally
 
 %% data
 
@@ -22,8 +22,8 @@ for i = 3:length(y)
 end
 
 %% 
-input = x(100:end); %input = (input) / max(abs((input))); %throw away the first 100 samples to avoid transient effects
-output = y(100:end); %output = (output) / max(abs((output))); %throw away the first 100 samples to avoid transient effects
+input = x(100:end);  %throw away the first 100 samples to avoid transient effects
+output = y(100:end);  %throw away the first 100 samples to avoid transient effects
 mu = 2;
 my = 1;    
 degree = 2;  
@@ -93,3 +93,21 @@ end
 
 disp(identModel.terms)
 disp(identModel.finalCoeff)
+
+
+%%
+
+if computeGFRF
+    Hn = computeSignalsGFRF(identModel.terms, identModel.Fs, identModel.finalCoeff, identModel.degree)
+    %%
+    identModel.GFRF = Hn;    
+    %%
+    save(['testIdentifiedModel' num2str(Fs) '.mat'], 'identModel');
+    disp('GFRF of order 1: ')
+    disp(identModel.GFRF{1}{1})
+    disp('GFRF of order 2: ')
+    disp(identModel.GFRF{1}{2})
+else
+    load(['testIdentifiedModel' num2str(Fs) '.mat']);      
+end
+
