@@ -39,7 +39,7 @@ function mfrols_par(p, y, phoLinear, phoNLinear, flag)
         %qk(:,j,:) = squeeze(p(:,j,:));
         parfor m=mBegin:mEnd
             if (max(m*ones(size(l))==l)==0) 
-                %%  Gram-Schmidt procedure
+                %% The Gram-Schmidt method was implemented in a modified way, as shown in Rice, JR(1966)
                  qs(:,m,j) = p(:,m,j);
                  for r=1:s-1
                      qs(:,m,j) = qs(:,m,j) - (squeeze(q(:,r,j))'*qs(:,m,j))/(squeeze(q(:,r,j))'*squeeze(q(:,r,j)))*squeeze(q(:,r,j));
