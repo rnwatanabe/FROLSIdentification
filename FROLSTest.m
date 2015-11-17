@@ -6,7 +6,8 @@ close all
 identifyModel = true;
 identifyNoise = true;
 identifyComplete = true;
-computeGFRF = true; % if you do not have the Symbolic Toolbox,set this to false. The other parts of the system identification will work normally
+computeGFRF = true; % if you do not have the Symbolic Toolbox,set this to false. The other parts of the system 
+                    %identification will work normally
 
 %% data
 
@@ -30,13 +31,14 @@ degree = 2;
 delay = 0;
 dataLength = 500;
 divisions = 1;
-phoL = 1e-1;
-pho = 1e-1;
+phoL = 1e-1; 
+pho = 1e-1; % alower value will give you more identified terms. A higher value will give you less.
 
 %%
 if identifyModel
     
-    [Da, a, la, ERRs] = NARXModelIdentificationOf2Signals(input, output, degree, mu, my, delay, dataLength, divisions, phoL, pho);
+    [Da, a, la, ERRs] = NARXModelIdentificationOf2Signals(input, output, degree, mu, my, delay, dataLength, divisions, ...
+        phoL, pho);
     %%
     identModel.terms = Da;
     identModel.termIndices = la;
@@ -61,7 +63,8 @@ if identifyNoise
     degree = identModel.degree;
     me = 2;  
     phoN = 1e-2;
-    [Dn, an, ln] = NARXNoiseModelIdentification(input, output, degree, mu, my, me, delay, dataLength, divisions, phoN,  identModel.coeff, identModel.termIndices);
+    [Dn, an, ln] = NARXNoiseModelIdentification(input, output, degree, mu, my, me, delay, dataLength, divisions, phoN,  ...
+        identModel.coeff, identModel.termIndices);
     %%
     identModel.noiseTerms = Dn;
     identModel.noiseTermIndices = ln;
@@ -79,7 +82,8 @@ end
 
 if identifyComplete
     delta = 1e-1;
-    [a, an, xi] = NARMAXCompleteIdentification((input), output, identModel.terms, identModel.noiseTerms, dataLength, divisions,  delta, identModel.degree, identModel.degree);
+    [a, an, xi] = NARMAXCompleteIdentification((input), output, identModel.terms, identModel.noiseTerms, dataLength, ...
+        divisions,  delta, identModel.degree, identModel.degree);
     %%
     identModel.finalCoeff = a;
     identModel.finalNoiseCoeff = an;
