@@ -1,8 +1,11 @@
+%% this script performs an example of all steps of the system identification available  at this repository
+
 clear all
 close all
+clc
 
 
-%%
+%% steps to perfrom
 identifyModel = true;
 identifyNoise = true;
 identifyComplete = true;
@@ -11,15 +14,21 @@ computeGFRF = true; % if you do not have the Symbolic Toolbox,set this to false.
 
 %% data
 
-% obtain a signal of the system y(k) = 0.3*y(k-1) + 2*x(k-1)*x(k-2)
+% obtain a signal of the system y(k) = 0.3*y(k-1) + 2*x(k-1)*x(k-2). You
+% can change it as you wish, or use your own data collected elsewhere.
+% The data must be in column format. It is also possible to use in the same
+% identification process different data acquisitions from the same system.
+% Each data acquisition must be in a different column and the columns from
+% the input matrix must be correspondent to the columns from the output
+% matrix
 Fs = 100;
 x = randn(2000,1);
 y = zeros(size(x));
 
 
 
-for i = 3:length(y)
-   y(i) = 0.3*y(i-1) + 2*x(i-1)*x(i-2); 
+for k = 3:length(y)
+   y(k) = 0.3*y(k-1) + 2*x(k-1)*x(k-2); 
 end
 
 %% 
@@ -32,7 +41,7 @@ delay = 0;
 dataLength = 500;
 divisions = 1;
 phoL = 1e-1; 
-pho = 1e-1; % alower value will give you more identified terms. A higher value will give you less.
+pho = 1e-1; % a lower value will give you more identified terms. A higher value will give you less.
 
 %%
 if identifyModel
