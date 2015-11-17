@@ -44,8 +44,8 @@ dataLength = 500; % number of samplings to be used during the identification pro
 divisions = 1; %Number of parts of the each data acquisition to be used in the identification process
 pho = 1e-1; % a lower value will give you more identified terms. A higher value will give you less.
 phoL = 1e-1; % a lower value will give you more identified terms. A higher value will give you less. This is only used 
-%if you want to compute the GFRFs, to guarantee that at least one term will be linear. In this case, change the variable
-%flag in %NARXModelIdentificationOf2Signals.m  file to 1
+%if you want to compute the GFRFs, to guarantee that at least one term will
+%be linear
 
 
 
