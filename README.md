@@ -15,7 +15,7 @@ and the following  book as the source of the algorithm:
 
 "S. A. Billings, Nonlinear System Identification: NARMAX Methods in the Time, Frequency and Spatio-temporal Domains. Chichester, UK: John Wiley & Sons, Ltd,, 2013."
 
-To run the an example, download all the files in the same directory and run the FROLSTest.m file.
+To run an example, download all the files in the same directory and run the FROLSTest.m file.
 
 
 
