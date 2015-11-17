@@ -1,6 +1,5 @@
 %% obtain a vector formed by integers corresponding to the ASCII code of u or y of the identified terms and the 
-%correspondibg lags.
-%It is used during the identification of the NARMAX model to read the vector of strings D.
+%correspondibg lags. It is used during the identification of the NARMAX model to read the vector of strings D.
 % D is a vector of strings with the chosen terms
 % I is a vector with the following format:
 % ___________________

@@ -1,8 +1,6 @@
 %% his function performs the identification of a NARMAX model that represents the dynamic of the system  with signal1 as 
-%input and signal2 as output. It
-%is used after the identification of a NARX model and of the residue of the NARX model. Only after this step, the 
-%coefficients of the model
-% can be considered reliable.
+%input and signal2 as output. It is used after the identification of a NARX model and of the residue of the NARX model. 
+%Only after this step, the coefficients of the model can be considered reliable.
 % signal1 is the input signal. It can contain multiple trials of the same system. Each trial must be in one column of 
 %the signal1 matrix.
 % signal2 is the output signal. It can contain multiple trials of the same system. Each trial must be in one column of 
@@ -10,8 +8,7 @@
 % Da is a vector of strings with the NARX model terms. 
 % Dn is a vector of strings with the NARX model terms of the residue.
 % dataLength is the number of steps of each column of the signal1 and 2 matrices to consider during the identification 
-%of the system.
-%Normally a very high number do not leads to good results. 400 to 600 should be fine.
+%of the system. Normally a very high number do not leads to good results. 400 to 600 should be fine.
 % divisions is the number of data parts (of dataLength length) to consider from each trial (each column) of the signals.
 % delta is the stop criteria to the ELS algorithm.
 % degree is the maximal polynomial degree of the NARX model.

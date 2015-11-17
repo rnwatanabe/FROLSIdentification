@@ -3,16 +3,14 @@
 % signal1 is the input signal. It can contain multiple trials of the same system. Each trial must be in one column of 
 %the signal1 matrix.
 % signal2 is the output signal. It can contain multiple trials of the same system. Each trial must be in one column of 
-%the signal2 matrix. 
-%Each column of signal2 must be correspondent to the same column number of signal1
+%the signal2 matrix. Each column of signal2 must be correspondent to the same column number of signal1
 % degree is the maximal polynomial degree that you want the FROLS method to look for (it has been tested until the 
 %9th degree)
 % mu is the maximal lag of the input signal
 % my is the maximal lag of the output signal
 % delay is how much lags you want to not consider in the input terms. It comes from a previous knowledge of your system
 % dataLength is the number of steps of each column of the signal1 and 2 matrices to consider during the identification 
-%of the system.
-%Normally a very high number do not leads to good results. 400 to 600 should be fine.
+%of the system. Normally a very high number do not leads to good results. 400 to 600 should be fine.
 % divisions is the number of data parts (of dataLength length) to consider from each trial (each column) of the signals.
 % phoL is the stop criteria, in the case of flag=1 (see the mfrols file), duing the first 45 steps
 % pho is the stop criteria 

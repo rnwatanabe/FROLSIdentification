@@ -14,8 +14,7 @@
 %u.
 % I are the cells with the vector corresponding to each model term, obtained from the modelLags function
 % beta is the coefficients vector of the last step of the ELS execution. In the first call, you can put the coefficients
-%vector originated from the FROLS
-%identification or other method that you ave used.
+%vector originated from the FROLS identification or other method that you ave used.
 % p is the matrix pp (in the case of t=0) or the concatenation of pp and pn (otherwise)
 % betan is the the coefficients vector found in this step of the ELS execution.
 % xin is the residue signal of the this step.
