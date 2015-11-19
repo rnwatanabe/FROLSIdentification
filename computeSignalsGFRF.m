@@ -5,9 +5,10 @@
 % degree is the maximal order of GFRF you want to obtain.
 % Hn is a cell with the GFRFs of the NARX model
 
-function [Hn] = computeSignalsGFRF(Da, Fs, a, degree)
+function [Hn] = computeSignalsGFRF(Da, Fs, a, la, degree)
 
     subjects = size(a, 2); 
+    [Da, a] = removeConstant(Da, a, la);
     
     Hn = cell(1, subjects);
     
