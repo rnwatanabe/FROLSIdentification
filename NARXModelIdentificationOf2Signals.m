@@ -45,7 +45,6 @@ for i = 1:trials
         k = k + 1;
     end
 end
-
 % identification of 1 to 2
 q = []; err=[]; An=[]; g=[];beta= [];
 s = 1;

@@ -111,7 +111,7 @@ else
             eval(['Hnn{n,p} = symfun(Hnn{n,p}(' fvector{n} ', ' lagsPvector ', lag' num2str(p) ...
                 ') + Hn{i}(' fvector{i} ')*Hnn{n-i,p-1}(' freqNivector ',' lagsPvector ...
                 ' )*exp(-1j*(freqSum)*(lag' num2str(p) ')), [' fvector{n} ',' lagsPvector ...
-                ', lag' num2str(p) '])']);
+                ', lag' num2str(p) ']);']);
         end
     end
     
@@ -219,13 +219,13 @@ else
                 for j = 1:n
                     eval(['freqSum(' fvector{n} ') = [freqSum + 2*pi*f' num2str(j) '/ fs];']);
                 end
-                denH = denH - c_10(lagsPosition(k)) * exp(-1j*freqSum*(lagsPosition(k)));
+                denH = denH - c_10(lagsPosition(k)) * exp(-1j*freqSum*lagsPosition(k));
             end
         end
     %% Computation of Hn for n = order
     
     numH = inputComponent + mixedComponent + outputComponent;
-    Hn{n} = numH / denH
+    Hn{n} = numH / denH;
     
     %% Computation of Hn,1
     
@@ -234,7 +234,7 @@ else
     for j = 1:n
         eval(['freqSum(' fvector{n} ') = [freqSum + 2*pi*f' num2str(j) '/ fs];']);
     end
-    eval(['Hnn{' num2str(n) ',1}(' fvector{n} ', lag1) = Hn{n}(' fvector{n} ')* exp(-1j*freqSum*lag1)'])    
+    eval(['Hnn{' num2str(n) ',1}(' fvector{n} ', lag1) = Hn{n}(' fvector{n} ')* exp(-1j*freqSum*lag1);'])    
 end
 end
 
