@@ -25,7 +25,7 @@ function [Da, a, la, ERRs] = NARXModelIdentificationOf2Signals(signal1, signal2,
 
 flag = 0;
 
-global l q g err An s ESR beta M0 D;
+global l q g err An ESR beta M0 D;
 
 %%
 trials = size(signal1, 2);
@@ -65,7 +65,7 @@ if parallel
     mfrols_par(p, output, phoL, pho, flag);
     matlabpool close
 else
-    mfrols(p, output, phoL, pho, flag);
+    mfrols(p, output, phoL, pho, s, flag);
 end
 %%
 err=err(1:M0)';

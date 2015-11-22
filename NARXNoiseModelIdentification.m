@@ -24,7 +24,7 @@
 function [Dn, an, ln] = NARXNoiseModelIdentification(signal1, signal2, degree, mu, my, me, delay, dataLength, ...
     divisions, pho,  a, la)
    
-    global l q g err An s ESR beta M0 D;
+    global l q g err An ESR beta M0 D;
 
     subjects = size(signal1, 2);
     
@@ -65,7 +65,7 @@ function [Dn, an, ln] = NARXNoiseModelIdentification(signal1, signal2, degree, m
       mfrols_par(pn, xi_output, 1e-5, pho, 0);
       matlabpool close
    else
-       mfrols(pn, xi_output, 1e-5, pho, 0);
+       mfrols(pn, xi_output, 1e-5, pho, s, 0);
    end
 %%
    err=err(1:M0)';

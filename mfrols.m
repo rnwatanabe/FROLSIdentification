@@ -3,14 +3,15 @@
 % y is the output vector
 % phoLinear is the stop criteria, in the case of flag=1, duing the first 45 steps
 % phoNLinear is the stop criteria
+% s is the iteration step of the mfrols algorithm
 % flag can be 0 or 1. It is important if you want to obtain GFRF from your identified model. It
 %guarantees that at least one term of he identified model will be a linear one. Normally flag=0 is OK
-function mfrols(p, y, phoLinear, phoNLinear, flag)
+function mfrols(p, y, phoLinear, phoNLinear, s, flag)
     
     global l;
     global err ESR;
-    global An s;
-    global q g beta M0 Dn D;
+    global An;
+    global q g beta M0;
     M = size(p,2);
     L = size(p,3);
     gs=zeros(L,M);
@@ -70,7 +71,7 @@ function mfrols(p, y, phoLinear, phoNLinear, flag)
        s = s + 1; 
        clear qs 
        clear gs
-       mfrols(p, y, phoLinear, phoNLinear, flag);
+       mfrols(p, y, phoLinear, phoNLinear, s, flag);
    else
        M0 = s;
        s = s + 1;

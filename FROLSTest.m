@@ -134,7 +134,7 @@ if computeGFRF
         disp(['GFRF of order' num2str(j) ': '])
         disp(identModel.GFRF{j})
     end
-    ezsurf((abs(identModel.GFRF{2})), [-50 50]); zlabel('dB'); title('GFRF of degree 2')
+    ezsurf((abs(identModel.GFRF{2})), [-50 50]); title('GFRF of degree 2')
 else
     load(['testIdentifiedModel' num2str(Fs) '.mat']);      
 end
@@ -152,7 +152,7 @@ if computeNOFRF
     fmin = 0; % lower frequency limit of the NOFRF
     fmax = 25; % upper frequency limit of the NOFRF
 
-    [NOFRF, f] = computeSystemNOFRF(identModel.GFRF, u', Fs, fres, GFRFdegree, fmin, fmax) 
+    [NOFRF, f] = computeSystemNOFRF(identModel.GFRF, u', Fs, fres, GFRFdegree, fmin, fmax); 
     % output prediction
     figure
     plot(f, (abs(NOFRF))); title('NOFRF for the input u')
