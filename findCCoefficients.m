@@ -46,7 +46,7 @@ function [C, maxLag] = findCCoefficients(a, I)
        if (~isempty(lags_y) && ~isempty(lags_u))
           lags_y = [lags_y, ',']; 
        end
-       lags = [lags_y, lags_u];
+       lags = strcat(lags_y, lags_u);
        eval(['C.c_' num2str(p) '' num2str(q) '(' lags ') = ' num2str(a(i)) ';']);
     end
 end

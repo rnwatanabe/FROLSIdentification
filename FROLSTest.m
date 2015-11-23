@@ -44,7 +44,7 @@ delay = 1; % the number of samplings that takes to the input signal effect the o
 dataLength = 500; % number of samplings to be used during the identification process. Normally a number between 400 and
 % 600 is good. Do not use large numbers.
 divisions = 4; % Number of parts of each data acquisition to be used in the identification process
-pho = 1e-3; % a lower value will give you more identified terms. A higher value will give you less.
+pho = 1e-2; % a lower value will give you more identified terms. A higher value will give you less.
 phoL = 1e-2; % a lower value will give you more identified terms. A higher value will give you less. This is only used 
 %if you want to compute the GFRFs, to guarantee that at least one term will be linear. In this case, change the variable
 %flag in %NARXModelIdentificationOf2Signals.m  file to 1
@@ -77,8 +77,8 @@ end
 
 if identifyNoise
     degree = identModel.degree;
-    me = 2; % a good start guess for me is max(mu, my). In this case me=2. 
-    phoN = 1e-2;
+    me = 3*max(mu,my); % a good start guess for me is max(mu, my). In this case me=2. 
+    phoN = 1e-1;
     [Dn, an, ln] = NARXNoiseModelIdentification(input, output, degree, mu, my, me, delay, dataLength, divisions, phoN,  ...
         identModel.coeff, identModel.termIndices);
     %%
@@ -111,6 +111,8 @@ else
     load(['testIdentifiedModel' num2str(Fs) '.mat']);      
 end
 
+
+
 disp('Identified Model')
 disp(identModel.terms) 
 disp('Coefficients')
@@ -131,10 +133,11 @@ if computeGFRF
     %%
     save(['testIdentifiedModel' num2str(Fs) '.mat'], 'identModel');
     for j = 1:GFRFdegree
-        disp(['GFRF of order' num2str(j) ': '])
+        disp(['GFRF of order ' num2str(j) ': '])
         disp(identModel.GFRF{j})
     end
-    ezsurf((abs(identModel.GFRF{2})), [-50 50]); title('GFRF of degree 2')
+    figure
+    ezsurf(matlabFunction(abs((identModel.GFRF{2}))), [-50 50]); title('GFRF of degree 2')
 else
     load(['testIdentifiedModel' num2str(Fs) '.mat']);      
 end
@@ -167,7 +170,6 @@ if computeNOFRF
     end
     Y = fft(y(1000:end)); Y = fftshift(Y)/length(Y);
     f4 = -Fs/2:Fs/length(Y):Fs/2-Fs/length(Y);
-    [Sy, f] = pwelch((y(100:end)),[],[],[],Fs);
     figure
     plot(f4, 2*(abs(Y))); xlim([0 25]);
 end

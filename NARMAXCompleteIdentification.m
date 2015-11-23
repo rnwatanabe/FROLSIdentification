@@ -17,7 +17,7 @@
 % an is the vector of coefficients of the NARX model of the residue.
 % xi is the reidue signal obtained form the last ELS iteration
 
-function [a, an, xi] = NARMAXCompleteIdentification(signal1, signal2, Da, Dn, dataLength, divisions,  ...
+function [a, an, xin] = NARMAXCompleteIdentification(signal1, signal2, Da, Dn, dataLength, divisions,  ...
     delta, degree, degree_n)
     
     global t
@@ -67,5 +67,16 @@ function [a, an, xi] = NARMAXCompleteIdentification(signal1, signal2, Da, Dn, da
        an(:,i) = mean(beta(Mp+1:end, (i-1)*divisions + 1:i*divisions), 2); 
     end
     
+    %% identication process validation
+%     V = ver;
+%     for i = 1:length(V)
+%         if (strcmp(V(i).Name,'Octave'))
+%             pkg load signal;
+%         end
+%     end
+%     xiValid = xin(end-round(0.9*size(xin,1)):end,1:divisions:end);
+%     uValid = u(end-size(xiValid,1)+1:end, 1:divisions:end);
+%     validation(uValid,xiValid, 2*maxLag);
+%     
       
 end

@@ -24,7 +24,7 @@
 function [Dn, an, ln] = NARXNoiseModelIdentification(signal1, signal2, degree, mu, my, me, delay, dataLength, ...
     divisions, pho,  a, la)
    
-    global l q g err An ESR M0 D;
+    global l q g err An ESR M0;
 
     subjects = size(signal1, 2);
     

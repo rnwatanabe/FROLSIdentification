@@ -6,6 +6,13 @@
 % Hn is a cell with the GFRFs of the NARX model
 
 function [Hn] = computeSignalsGFRF(Da, Fs, a, la, degree)
+    
+    V = ver;
+    for i = 1:length(V)
+        if (strcmp(V(i).Name,'Octave'))
+            pkg load symbolic;
+        end
+    end
 
     subjects = size(a, 2); 
     [Da, a] = removeConstant(Da, a, la);

@@ -25,7 +25,7 @@ function [Da, a, la, ERRs] = NARXModelIdentificationOf2Signals(signal1, signal2,
 
 flag = 0;
 
-global l q g err An ESR M0 D;
+global l q g err An ESR M0;
 
 %%
 trials = size(signal1, 2);
@@ -67,10 +67,9 @@ else
     beta = mfrols(p, output, phoL, pho, s, flag);
 end
 %%
-err=err(1:M0)';
-l=l(1:M0)';
-la = l;
-Da=D(l)';
+err = err(1:M0)';
+la = l(1:M0)';
+Da = D(la)';
 for i = 1:trials
     a(:,i) = mean(beta(:,(i-1)*divisions + 1:i*divisions), 2);
 end

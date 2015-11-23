@@ -63,10 +63,10 @@ if (order==1)
         numH(f1) = 1;
     end
     H1(f1) = numH(f1) / denH(f1);
-    H1(f1) = simple(H1);
+    
     
     syms H1_1(f1)
-    %H1_1(f1, lag1) = H1(f1) * exp(-1j*(2*pi*f1/fs)^lag1);
+    
     H1_1(f1, lag1) = H1(f1) * exp(-1j*(2*pi*f1/fs)*lag1);
     
     Hn{1} = H1;
