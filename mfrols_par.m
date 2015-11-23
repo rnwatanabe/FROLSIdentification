@@ -3,20 +3,21 @@
 % y is the output vector
 % phoLinear is the stop criteria, in the case of flag=1, duing the first 45 steps
 % phoNLinear is the stop criteria
+% s is the iteration step of the mfrols algorithm
 % flag can be 0 or 1. It is important if you want to obtain GFRF from your identified model. It
 %guarantees that at least one term of he identified model will be a linear one. Normally flag=0 is OK
-function mfrols_par(p, y, phoLinear, phoNLinear, flag)
+function [beta] = mfrols_par(p, y, phoLinear, phoNLinear, s, flag)
     
     global l;
     global err ESR;
-    global An s;
-    global q g beta M0 Dn D;
+    global An;
+    global q g M0;
+    beta = [];
     M = size(p,2);
     L = size(p,3);
     gs=zeros(L,M);
     ERR=zeros(L,M);
     qs=zeros(size(p));
-    s
     %%
     if (s<=45 && flag == 1)
             mBegin = 1;
@@ -32,7 +33,6 @@ function mfrols_par(p, y, phoLinear, phoNLinear, flag)
                 pho = phoNLinear;
             end    
     end   
-    pho
     %%
     for j=1:L
         sigma = y(:,j)'*y(:,j);
@@ -65,14 +65,14 @@ function mfrols_par(p, y, phoLinear, phoNLinear, flag)
         q(:, s,j) = qs(:,l(s),j);
         g(j,s) = gs(j,l(s));
     end    
-    ESR = ESR - err(s)
+    ESR = ESR - err(s);
     %D{l(s)}
     %% recursive call 
-   if (err(s) >= pho && s < min(M, M))
+   if (err(s) >= pho && s < M)
        s = s + 1; 
        clear qs 
        clear gs
-       mfrols(p, y, phoLinear, phoNLinear, flag);
+       beta = mfrols(p, y, phoLinear, phoNLinear, s, flag);
    else
        M0 = s;
        s = s + 1;
@@ -81,3 +81,4 @@ function mfrols_par(p, y, phoLinear, phoNLinear, flag)
        end       
    end   
 end
+

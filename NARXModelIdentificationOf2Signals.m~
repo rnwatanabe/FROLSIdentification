@@ -25,7 +25,7 @@ function [Da, a, la, ERRs] = NARXModelIdentificationOf2Signals(signal1, signal2,
 
 flag = 0;
 
-global l q g err An ESR M0 D;
+global l q g err An ESR beta M0 D;
 
 %%
 trials = size(signal1, 2);
@@ -46,7 +46,7 @@ for i = 1:trials
     end
 end
 % identification of 1 to 2
-q = []; err=[]; An=[]; g=[]; 
+q = []; err=[]; An=[]; g=[]; beta= [];
 s = 1;
 ESR = 1;
 M = size(p, 3);
@@ -61,10 +61,10 @@ for i = 1:length(V)
 end
 if parallel
     matlabpool open 6 % this is the number of cores to use during the processing. You can change it.
-    beta = mfrols_par(p, output, phoL, pho, s, flag);
+    mfrols_par(p, output, phoL, pho, s, flag);
     matlabpool close
 else
-    beta = mfrols(p, output, phoL, pho, s, flag);
+    mfrols(p, output, phoL, pho, s, flag);
 end
 %%
 err=err(1:M0)';

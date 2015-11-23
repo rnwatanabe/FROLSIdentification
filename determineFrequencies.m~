@@ -10,9 +10,8 @@
 
 
 function fVectorValid = determineFrequencies(f, fres, n, Fs)
-    fVectorTemp = cell(n-1,1);
-    fVector = cell(n-1,1);
-    fVectorValid = cell(n,1);
+    fVectorValid
+
     
     for i = 1:n-1
         fVectorTemp{i} = -Fs/2:fres:Fs/2;
@@ -36,6 +35,6 @@ function fVectorValid = determineFrequencies(f, fres, n, Fs)
     end
     validFrequenciesIndex = abs(fVector{n})<=Fs/2;
     for j = 1:n
-         fVectorValid{j} = reshape(fVector{j}(validFrequenciesIndex), [], 1);
+         fVectorValid{j} = reshape(fVector{j}(validFrequenciesIndex), 1, []);
     end
 end

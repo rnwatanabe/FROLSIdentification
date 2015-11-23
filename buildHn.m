@@ -181,7 +181,7 @@ else
                             end
                         end
                         eval(['mixedComponent(' fvector{n} ') = mixedComponent(' fvector{n} ') + c_'  num2str(p) '' ...
-                            num2str(q) '(' lNvector ') * expFreqLag * Hnn{' num2str(n-q) ',' num2str(p) '}(' fvector{n-q} ...
+                            num2str(q) '(' lNvector ') * expFreqLag * Hnn{n-q,p}(' fvector{n-q} ...
                             ',' lPvector ');'])
                     end
                 end
@@ -205,8 +205,7 @@ else
                         end
                     end
                     eval(['outputComponent(' fvector{n} ') = outputComponent(' fvector{n} ...
-                        ') + c_' num2str(p) '0(' lPvector ') * Hnn{' num2str(n) ',' num2str(p) ...
-                        '}(' fvector{n} ',' lPvector ');']);
+                        ') + c_' num2str(p) '0(' lPvector ') * Hnn{n,p}(' fvector{n} ',' lPvector ');']);
                 end
             end
         end

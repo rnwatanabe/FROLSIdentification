@@ -6,12 +6,13 @@
 % s is the iteration step of the mfrols algorithm
 % flag can be 0 or 1. It is important if you want to obtain GFRF from your identified model. It
 %guarantees that at least one term of he identified model will be a linear one. Normally flag=0 is OK
-function mfrols(p, y, phoLinear, phoNLinear, s, flag)
+function [beta] = mfrols(p, y, phoLinear, phoNLinear, s, flag)
     
     global l;
     global err ESR;
     global An;
-    global q g beta M0;
+    global q g M0;
+    beta = [];
     M = size(p,2);
     L = size(p,3);
     gs=zeros(L,M);
@@ -67,11 +68,11 @@ function mfrols(p, y, phoLinear, phoNLinear, s, flag)
     ESR = ESR - err(s);
     %D{l(s)}
     %% recursive call 
-   if (err(s) >= pho && s < min(M, 70))
+   if (err(s) >= pho && s < M)
        s = s + 1; 
        clear qs 
        clear gs
-       mfrols(p, y, phoLinear, phoNLinear, s, flag);
+       beta = mfrols(p, y, phoLinear, phoNLinear, s, flag);
    else
        M0 = s;
        s = s + 1;

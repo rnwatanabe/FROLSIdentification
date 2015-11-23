@@ -8,7 +8,6 @@
 % DegreeOFRF is the NOFRF relative to the specified degree
 
 function DegreeNOFRF = computeDegreeNOFRF(HnFunction, X, Fs, degree, f, fres)
-        X = X';
         fv = -Fs/2:fres:Fs/2;
         
         for i = 1:degree
