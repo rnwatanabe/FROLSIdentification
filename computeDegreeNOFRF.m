@@ -1,11 +1,23 @@
-%% Computes the NOFRF of the specified degree in the frequency f
-% HnFunction is a function of the the GFRFs of the specified degree
-% X is the FFT of the input signal obtained with the computeSignalFFT function
-% Fs is the sampling frequency, in Hz
-% degree is the degree of the NOFRF to be computed 
-% f if the frequency, in Hz, to have the NOFRF computed
-% fres is the frequency resolution of the FFT, in Hz
-% DegreeOFRF is the NOFRF relative to the specified degree
+%% Computes the NOFRF of the specified degree in the frequency f.
+%
+%
+%	DegreeNOFRF = computeDegreeNOFRF(HnFunction, X, Fs, degree, f, fres)
+%	where:
+%
+% 	HnFunction is a function of the the GFRFs of the specified degree.
+%
+% 	X is the FFT of the input signal obtained with the computeSignalFFT function.
+%
+% 	Fs is the sampling frequency, in Hz.
+%
+% 	degree is the degree of the NOFRF to be computed.
+% 
+% 	f if the frequency, in Hz, to have the NOFRF computed.
+%	
+% 	fres is the frequency resolution of the FFT, in Hz.
+%
+%
+% 	DegreeOFRF is the NOFRF relative to the specified degree.
 
 function DegreeNOFRF = computeDegreeNOFRF(HnFunction, X, Fs, degree, f, fres)
         fv = -Fs/2:fres:Fs/2;

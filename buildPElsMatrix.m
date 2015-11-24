@@ -1,11 +1,23 @@
-%% function to build the P matrix for the  ELS identification process 
-% u is the input signal
-% y is the output signal
-% e is the residue signal
-% I are the cells with the vector corresponding to each model term, obtained from the modelLags function
-% noise is a True/False variable to indicate if you have a residue signal. Normally you call it set to 0. The recursive
-%calls will call it set to 1.
-% Mp is the number of terms found in the identification process, withot the residues
+%% function to build the P matrix for the  ELS identification process. 
+%
+%
+%	p = buildPElsMatrix(u, y, e, I, noise, Mp)
+%	where:
+%	
+%	u is the input signal.
+%
+%	y is the output signal.
+%
+% 	e is the residue signal.
+%
+% 	I are the cells with the vector corresponding to each model term, obtained from the modelLags function
+% 	noise is a True/False variable to indicate if you have a residue signal. Normally you call it set to 0. The recursive
+%	calls will call it set to 1.
+%
+% 	Mp is the number of terms found in the identification process, withot the residues.
+%
+%
+%	p is the P matrix for the  ELS identification process. 
 
 
 function p = buildPElsMatrix(u, y, e, I, noise, Mp)

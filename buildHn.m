@@ -1,14 +1,26 @@
-%% implements the algorithm to find the GFRFs of a NARX model. Is the
-%Equation (6.47) from Billings, 2013. It uses the Symbolic Toolbox
-% order is an integer with order of the GFRF you want to obtain. When you call it you should 
-%put as entry the maximal order of GFRF you want to obtain. As it is a recursive algorithm, 
-%it will give you as output all the GFRF with order lower and equal than the order number.
-% C is the struct obtained from the findCCoefficients function
-% fs is the sampling frequency of the data, in Hz.
-% maxLag is the maximal Lag of the model
-% noiseFlag is an indicator used for NonLinear Partial Directed Coherence. Normally set it to 0.
-% Hnn are the intermediate functions for the GFRF computation
-% Hn is a cell with the GFRFs.
+%% Implements the algorithm to find the GFRFs of a NARX model. It is the
+%	Equation (6.47) from Billings, 2013. It requires the Symbolic Matlab Toolbox.
+%	
+%
+%	[Hnn, Hn] = buildHn(order, C, fs, maxLag, noiseFlag)
+%	where:
+%
+% 	order is an integer with order of the GFRF you want to obtain. When you call it you should 
+%	put as entry the maximal order of GFRF you want to obtain. As it is a recursive algorithm, 
+%	it will give you as output all the GFRF with order lower and equal than the order number.
+%
+% 	C is the struct obtained from the findCCoefficients function.
+%
+% 	fs is the sampling frequency of the data, in Hz.
+%
+% 	maxLag is the maximal Lag of the model.
+%
+% 	noiseFlag is an indicator used for NonLinear Partial Directed Coherence. Normally set it to 0.
+%
+%
+% 	Hnn are the intermediate functions for the GFRF computation.
+%
+% 	Hn is a cell with the GFRFs.
 
 
 function [Hnn, Hn] = buildHn(order, C, fs, maxLag, noiseFlag)

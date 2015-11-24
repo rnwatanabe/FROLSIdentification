@@ -9,9 +9,9 @@ clc
 identifyModel = true;
 identifyNoise = true;
 identifyComplete = true;
-computeGFRF = true; % if you do not have the Symbolic Toolbox,set this to false. The other parts of the system 
+computeGFRF = true; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
                     %identification will work normally
-computeNOFRF = true; % if you do not have the Symbolic Toolbox,set this to false. The other parts of the system 
+computeNOFRF = true; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
                     %identification will work normally
 
 %% data
@@ -127,14 +127,14 @@ if computeGFRF
     %is to add one to your maximal polynomial degree. If you have only
     %inputs or outputs terms,, the GFRFdegree will be the maximal
     %polynomial degree.
-    Hn = computeSignalsGFRF(identModel.terms, identModel.Fs, identModel.finalCoeff, identModel.termIndices, GFRFdegree);
+    Hn = computeSignalsGFRF(identModel.terms, identModel.Fs, identModel.finalCoeff, GFRFdegree);
     %%
-    identModel.GFRF = Hn{1};    
-    %%
+    identModel.GFRF = Hn;    
+    %%    
     save(['testIdentifiedModel' num2str(Fs) '.mat'], 'identModel');
     for j = 1:GFRFdegree
         disp(['GFRF of order ' num2str(j) ': '])
-        disp(identModel.GFRF{j})
+        pretty(identModel.GFRF{j})
     end
     figure
     ezsurf(matlabFunction(abs((identModel.GFRF{2}))), [-50 50]); title('GFRF of degree 2')
@@ -172,7 +172,16 @@ if computeNOFRF
     f4 = -Fs/2:Fs/length(Y):Fs/2-Fs/length(Y);
     figure
     plot(f4, 2*(abs(Y))); xlim([0 25]);
+    identModel.NOFRF = NOFRF;
+    identModel.fNOFRF = f;
+    %%
+    save(['testIdentifiedModel' num2str(Fs) '.mat'], 'identModel');
+else
+    load(['testIdentifiedModel' num2str(Fs) '.mat']); 
 end
+
+
+
 
 
 

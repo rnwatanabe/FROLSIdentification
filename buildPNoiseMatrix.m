@@ -1,16 +1,31 @@
 %% function to build the P matrix for the FROLS identification process of the residue from the system identification 
 %of the signals
-% u is the input signal
-% y is the output signal
-% e is the residue signal
-% degree is the maximal polynomial degree that you want the FROLS method to look for (it has been tested until the 9th 
-%degree)
-% mu is the maximal lag of the input signal
-% my is the maximal lag of the output signal
-% me is the maximal lag of the residue signal
-% delay is how much lags you want to not consider in the input terms. It comes from a previous knowledge of your system
-% p is the matrix used in the identification process of the residue of the system identification by the FROLS algorithm. 
-% D is a vector of strings with candidate terms. Each element of D corresponds to a column of the P matrix.
+%
+%
+%	[p, D] = buildPNoiseMatrix(u, y, e, degree, mu, my, me, delay)
+%	where:
+%
+% 	u is the input signal.
+%
+% 	y is the output signal.
+%
+% 	e is the residue signal.
+%
+% 	degree is the maximal polynomial degree that you want the FROLS method to look for (it has been tested until the 9th 
+%	degree).
+%
+% 	mu is the maximal lag of the input signal.
+%
+% 	my is the maximal lag of the output signal.
+%
+% 	me is the maximal lag of the residue signal.
+%
+% 	delay is how much lags you want to not consider in the input terms. It comes from a previous knowledge of your system.
+%
+%
+% 	p is the matrix used in the identification process of the residue of the system identification by the FROLS algorithm. 
+%
+% 	D is a vector of strings with candidate terms. Each element of D corresponds to a column of the P matrix.
 
 function [p, D] = buildPNoiseMatrix(u, y, e, degree, mu, my, me, delay)
     N=length(u);

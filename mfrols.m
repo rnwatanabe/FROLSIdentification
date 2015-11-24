@@ -1,12 +1,27 @@
-% Implements the MFROLS algorithm (see page 97 from Billings, SA (2013))
-% p is the matrix of candidates
-% y is the output vector
-% phoLinear is the stop criteria, in the case of flag=1, duing the first 45 steps
-% phoNLinear is the stop criteria
-% s is the iteration step of the mfrols algorithm
-% flag can be 0 or 1. It is important if you want to obtain GFRF from your identified model. It
-%guarantees that at least one term of he identified model will be a linear one. Normally flag=0 is OK
-function [beta] = mfrols(p, y, phoLinear, phoNLinear, s, flag)
+% Implements the MFROLS algorithm (see page 97 from Billings, SA (2013)).
+%
+%
+%	beta = mfrols(p, y, phoLinear, phoNLinear, s, flag)
+%	where:
+%	
+% 	p is the matrix of candidates.
+%
+% 	y is the output vector.
+%
+% 	phoLinear is the stop criteria, in the case of flag=1, during the first 45 steps.
+%
+% 	phoNLinear is the stop criteria.
+%
+% 	s is the iteration step of the mfrols algorithm.
+%
+% 	flag can be 0 or 1. It is important if you want to obtain GFRF from your identified model. It
+%	guarantees that at least one term of he identified model will be a linear one. Normally flag=0 is OK.
+%
+%
+%	beta is a vector with the coefficients of the chosen terms.
+
+
+function beta = mfrols(p, y, phoLinear, phoNLinear, s, flag)
     
     global l;
     global err ESR;
