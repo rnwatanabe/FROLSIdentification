@@ -30,7 +30,7 @@ u = randn(2000,1);
 y = 0.0*ones(size(u));
 
 for k = 5:length(y)
-   y(k) = 0.1*y(k-1)  - 0.5*u(k-1)*y(k-1) + 0.1*u(k-2); 
+   y(k) = 0.1*y(k-1) - 0.2*y(k-2) - 0.5*u(k-1)*y(k-1) + 0.1*u(k-2); 
 end
 
 %% 
@@ -138,7 +138,7 @@ if computeGFRF
     end
     GFRF2LaTeX(identModel.GFRF, 'script', 'GFRF.tex', 3);
     plotGFRF(identModel.GFRF, 50, 4, 'centimeters', 16, 16, 2, 1, 1,...
-                2, 2, 0.3);
+                2, 2, 0.2);
 else
     load(['testIdentifiedModel' num2str(Fs) '.mat']);      
 end
