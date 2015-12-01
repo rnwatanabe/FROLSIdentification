@@ -6,12 +6,12 @@ clc
 
 
 %% steps to perform
-identifyModel = true;
-identifyNoise = true;
+identifyModel = false;
+identifyNoise = false;
 identifyComplete = true;
-computeGFRF = true; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
+computeGFRF = false; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
                     %identification will work normally
-computeNOFRF = false; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
+computeNOFRF = true; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
                     %identification will work normally
 
 %% data
@@ -37,7 +37,7 @@ end
 input = (u(100:end));  % throw away the first 100 samples to avoid transient effects
 output = (y(100:end));  % throw away the first 100 samples to avoid transient effects
 mu = 2; % maximal lag for the input. In this case, we know that mu is 2 but normally we do not!
-my = 1; % maximal lag for the output. In this case, we know that my is 1 but normally we do not!   
+my = 2; % maximal lag for the output. In this case, we know that my is 1 but normally we do not!   
 degree = 2; % maximal polynomial degree. In this case, we know that degree is 2 but normally we do not! 
 delay = 1; % the number of samplings that takes to the input signal effect the output signal. In this case we know that 
 %degree is 2 but normally we do not! 
@@ -185,15 +185,10 @@ else
     load(['testIdentifiedModel' num2str(Fs) '.mat']); 
 end
 
-figure
-ha = measuredPlot(2, 3, 'centimeters', 16, 16, 1, 2, 0.3, ...
-    1.5, 1.5, 0.3)
 
-f = [2 5 10 15 20 25];
-for i = 1:length(f)
-    axes(ha(i))
-    t = 0:1/Fs:10000/Fs-1/Fs;
-    u = cos(2*pi*f(i)*t) + 0*cos(2*pi*5*t);
+
+for f = [5 10 15 20 25]
+    u = cos(2*pi*f*t) + 0*cos(2*pi*5*t);
     y = zeros(size(u));
     for k = 5:length(y)
         % system simulation for this input. This difference equation must
@@ -202,6 +197,6 @@ for i = 1:length(f)
     end
     Y = fft(y(1000:end)); Y = fftshift(Y)/length(Y);
     f4 = -Fs/2:Fs/length(Y):Fs/2-Fs/length(Y);
-    
+    figure
     plot(f4, 2*(abs(Y))); xlim([0 50]);
 end

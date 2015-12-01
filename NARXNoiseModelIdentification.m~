@@ -45,7 +45,7 @@
 function [Dn, an, ln] = NARXNoiseModelIdentification(signal1, signal2, degree, mu, my, me, delay, dataLength, ...
     divisions, pho,  a, la)
    
-    global l q g err A ESR M0;
+    global l q g err A ESR M0; % The global variables are used due to the lack of pointers in Matlab
 
     subjects = size(signal1, 2);
     

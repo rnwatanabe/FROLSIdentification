@@ -1,5 +1,7 @@
 %% Builds a set of subplots with the specified measures.
 %
+%   written by: Renato Naville Watanabe 
+%
 %
 %   ha = measuredPlot(numberOfRows, numberOfCols, unit, height, width, gapVertical, gapHorizontal, marginTop, ...
 %    marginBottom, marginLeft, marginRight)

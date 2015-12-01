@@ -1,5 +1,6 @@
 %% Plots the all the GFRFs, one GFRF degree per plot. For degrees higher than 2, plots the number of specified slices of 
 %   the GFRFs.
+%   written by: Renato Naville Watanabe 
 %
 %
 %   plotGFRF(GFRF, fmax, slices, figureWidth, figureHeight, gapHeight, gapWidth, marginTop,...
@@ -45,9 +46,10 @@ function plotGFRF(GFRF, fmax, slices, unit, figureHeight, figureWidth, gapVertic
             ha = measuredPlot(1, 1, unit, figureHeight, figureWidth, gapVertical, gapHorizontal, marginTop, ...
                     marginBottom, marginLeft, marginRight);
             axes(ha(1));
-            ezplot(matlabFunction(abs(GFRF{i})), [-fmax fmax]); title('')
+            ezplot(matlabFunction((abs(GFRF{i}))), [-fmax fmax]); title('')
             xlabel('f (Hz)');
             ylabel('H_1')
+            set(gca, 'Box','On', 'LineWidth', 2);
         else if i == 2  
                 ha = measuredPlot(1, 1, unit, figureHeight, figureWidth, gapVertical, gapHorizontal, marginTop, ...
                     marginBottom, marginLeft, marginRight + 1.9);
@@ -59,7 +61,7 @@ function plotGFRF(GFRF, fmax, slices, unit, figureHeight, figureWidth, gapVertic
                 p = get(gca, 'Position');
                 c1 = colorbar('location', 'East', 'Units','centimeters','Position',[p(1)+p(3)+1.3 p(2) 0.7 p(4)]);
                 axes(ha(end))
-                set(gca,'Position', p);
+                set(gca,'Position', p,'Box','On', 'LineWidth', 2);
             else
                 numberOfRows = ceil(sqrt(slices));
                 numberOfCols = ceil(sqrt(slices));                
@@ -90,10 +92,11 @@ function plotGFRF(GFRF, fmax, slices, unit, figureHeight, figureWidth, gapVertic
                         xlabel('')
                     end
                     p = get(gca, 'Position');
+                    set(gca,'Position', p,'Box','On', 'LineWidth', 2);
                 end
                 c1 = colorbar('location', 'East', 'Units','centimeters','Position',[p(1)+p(3)+1.3 p(2) 0.7 2*p(4)+gapVertical]);
                 axes(ha(end))
-                set(gca,'Position', p);
+                set(gca,'Position', p,'Box','On', 'LineWidth', 2);
             end
         end
     end

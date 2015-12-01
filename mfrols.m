@@ -1,5 +1,7 @@
 % Implements the MFROLS algorithm (see page 97 from Billings, SA (2013)).
 %
+%   written by: Renato Naville Watanabe 
+%
 %
 %	beta = mfrols(p, y, phoLinear, phoNLinear, s, flag)
 %	where:
@@ -21,11 +23,12 @@
 %	beta is a vector with the coefficients of the chosen terms.
 
 
-function beta = mfrols(p, y, phoLinear, phoNLinear, s, flag)
+function beta = mfrols(p, y, pho, s)
     
+    % The global variables are used due to the lack of pointers in Matlab
     global l;
     global err ESR;
-    global An;
+    global A;
     global q g M0;
     beta = [];
     M = size(p,2);
@@ -34,25 +37,11 @@ function beta = mfrols(p, y, phoLinear, phoNLinear, s, flag)
     ERR=zeros(L,M);
     qs=zeros(size(p));
     %%
-    if (s<=45 && flag == 1)
-            mBegin = 1;
-            mEnd = 60;
-            pho = phoLinear;
-        else if (flag == 1)
-                mBegin = 1;
-                mEnd = M;
-                pho = phoNLinear;
-            else
-                mBegin = 1;
-                mEnd = M;
-                pho = phoNLinear;
-            end    
-    end   
     %%
     for j=1:L
         sigma = y(:,j)'*y(:,j);
         %qk(:,j,:) = squeeze(p(:,j,:));
-        for m=mBegin:mEnd
+        for m=1:M
             if (max(m*ones(size(l))==l)==0) 
                 %% The Gram-Schmidt method was implemented in a modified way, as shown in Rice, JR(1966)
                  qs(:,m,j) = p(:,m,j);
@@ -74,25 +63,25 @@ function beta = mfrols(p, y, phoLinear, phoNLinear, s, flag)
     err(s) = ERR_m(l(s));
     for j=1:L
         for r = 1:s-1
-            An(r, s, j) = (q(:,r,j)'*p(:,l(s),j))/(q(:,r,j)'*q(:,r,j));    
+            A(r, s, j) = (q(:,r,j)'*p(:,l(s),j))/(q(:,r,j)'*q(:,r,j));    
         end
-        An(s, s, j) = 1;
+        A(s, s, j) = 1;
         q(:, s,j) = qs(:,l(s),j);
         g(j,s) = gs(j,l(s));
     end    
     ESR = ESR - err(s);
     %D{l(s)}
     %% recursive call 
-   if (err(s) >= pho && s < M)
+    if (err(s) >= pho && s < M)
        s = s + 1; 
        clear qs 
        clear gs
-       beta = mfrols(p, y, phoLinear, phoNLinear, s, flag);
-   else
+       beta = mfrols(p, y, pho, s);
+    else
        M0 = s;
        s = s + 1;
        for j=1:L
-            beta(:,j) = An(:,:,j)\g(j,:)';
+            beta(:,j) = A(:,:,j)\g(j,:)';
        end       
-   end   
+    end   
 end

@@ -87,9 +87,7 @@ if parallel
     matlabpool open 6 % this is the number of cores to use during the processing. You can change it.
     beta = mfrols_par(p, output, phoL, pho, s, flag);
     matlabpool close
-else
-    size(p)
-    size(output)
+else    
     beta = mfrols(p, output, pho, s);
 end
 %%
