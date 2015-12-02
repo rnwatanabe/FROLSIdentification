@@ -1,37 +1,38 @@
 %% Plots the all the GFRFs, one GFRF degree per plot. For degrees higher than 2, plots the number of specified slices of 
 %   the GFRFs.
+%
 %   written by: Renato Naville Watanabe 
 %
 %
 %   plotGFRF(GFRF, fmax, slices, figureWidth, figureHeight, gapHeight, gapWidth, marginTop,...
 %                marginBottom, marginLeft, marginRight, units)  
-%   where:
+%   
+%   Inputs:
 %
-%   GFRF is the cell with all GFRFs to be plotted.
+%   GFRF: cell, contains all GFRFs to be plotted.
 %
-%   fmax is the maximal frequency to be plotted.
+%   fmax: float, maximal frequency to be plotted.
 %
-%   slices is the number of slices of the GFRFs with degree higher than
-%   two.
+%   slices: integer, number of slices of the GFRFs with degree higher than two.
 %
-%   unit is a string with the length unit to be used. Possible units are 'pixels', 'normalized', 'inches', 
+%   unit: string, length unit to be used. Possible units are 'pixels', 'normalized', 'inches', 
 %   'centimeters', 'points' and 'characters'.
 %
-%   figureHeight is the height of each plot, in the established unit.
+%   figureHeight: float, height of each plot, in the established unit.
 %
-%   figureWidth is the width of each plot, in the established unit.
+%   figureWidth: float, width of each plot, in the established unit.
 %
-%   gapVertical is the vertical gap between the plots, in the established unit.
+%   gapVertical: float, vertical gap between the plots, in the established unit.
 %
-%   gapHorizontal is the horizontal gap between the plots, in the established unit.
+%   gapHorizontal: float, horizontal gap between the plots, in the established unit.
 %
-%   marginTop is the margin in the top of the figure, in the established unit.
+%   marginTop: float, margin in the top of the figure, in the established unit.
 %
-%   marginBottom is the margin in the bottom of the figure, in the established unit.
+%   marginBottom: float, margin in the bottom of the figure, in the established unit.
 %
-%   marginLeft is the margin in the left side of the figure, in the established unit.
+%   marginLeft: float, margin in the left side of the figure, in the established unit.
 %
-%   marginRight is the margin in the right side of the figure, in the established unit.
+%   marginRight: float, margin in the right side of the figure, in the established unit.
 
 
 

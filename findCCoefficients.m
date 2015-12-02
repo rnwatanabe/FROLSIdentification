@@ -1,15 +1,20 @@
 %% Find the coeficcients of the coefficients in the format of Equation 6.46 of Billings (2013).
 %
+%   written by: Renato Naville Watanabe 
 %
 %	[C, maxLag] = findCCoefficients(a, I)
-%	where:
+%	
 %
-%	a is the vector of coefficients of the NARX model.
+%   Inputs:
+%   
+%	a: vector of floats, coefficients of the NARX model.
 %
-% 	I is the vector obtained from the modelLags functions.
+% 	I: cell, obtained from the modelLags functions.
 %
 %
-% 	C is a struct with the coefficients of the model, in the format of Equation 6.46 of Billings (2013):
+%   Outputs:
+%   
+% 	C: struct, contains the coefficients of the model, in the format of Equation 6.46 of Billings (2013):
 %	C.c_pq where:
 %	p is  the number that the output signal appears in a term.
 %	q is  the number that the input signal appears in a term.
@@ -21,7 +26,7 @@
 % 	C.c11 = [0 0 0 0 0 0;...
 %		 0 0 0 0 0 10.5]
 %
-% 	maxLag is the maximal Lag of the model.
+% 	maxLag: integer, maximal Lag of the model.
 
 
 function [C, maxLag] = findCCoefficients(a, I)

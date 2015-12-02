@@ -1,42 +1,47 @@
 %% This function performs the identification of a NARMAX model that represents the dynamic of the system  
 %	with signal1 as input and signal2 as output. It is used after the identification of a NARX model 
-%	and of the residue of the NARX model. 
-%	Only after this step, the coefficients of the model can be considered reliable.
+%	and of the residue of the NARX model. Only after this step, the coefficients of the model can be considered reliable.
 %
+%   written by: Renato Naville Watanabe 
 %
 %	[a, an, xin] = NARMAXCompleteIdentification(signal1, signal2, Da, Dn, dataLength, divisions,  ...
 %    	delta, degree, degree_n) 
-%	where:
+%	
+%   Inputs:
 %
-%	signal1 is the input signal. It can contain multiple trials of the same system. Each trial must be 
-%	in one column of the signal1 matrix.
+% 	signal1: matrix of floats, input signal. It can contain multiple trials of the same system. Each trial must be 
+%	  in one column of the signal1 matrix.
 %
-% 	signal2 is the output signal. It can contain multiple trials of the same system. Each trial must be
+% 	signal2: matrix of floats, output signal. It can contain multiple trials of the same system. Each trial must be
 % 	in one column of the signal2 matrix.
 %
-% 	Da is a vector of strings with the NARX model terms. 
+% 	Da: cell, contains the strings with the terms found during the system idetification. u is the input 
+%	signal and y is the output signal.
 %
-% 	Dn is a vector of strings with the NARX model terms of the residue.
+% 	Dn: cell, contains the strings with the terms found during the residue idetification. u is the input 
+%	signal, y is the output signal and e is the residue signal.
 %
-% 	dataLength is the number of steps of each column of the signal1 and 2 matrices to consider during the
+% 	dataLength: integer, number of steps of each column of the signal1 and 2 matrices to consider during the
 %	identification of the system. Normally a very high number do not leads to good results. 
 %	400 to 600 should be fine.
 %
-% 	divisions is the number of data parts (of dataLength length) to consider from each trial (each column) 
+% 	divisions: integer, number of data parts (of dataLength length) to consider from each trial (each column) 
 %	of the signals.
 %
-% 	delta is the stop criteria to the ELS algorithm.
+% 	delta: float, stop criteria to the ELS algorithm.
 %
-% 	degree is the maximal polynomial degree of the NARX model.
+% 	degree: integer, maximal polynomial degree of the NARX model.
 %
-% 	degree_n is the maximal polynomial degree of the NARX model of the residue. 
+% 	degree_n: integer, maximal polynomial degree of the NARX model of the residue. 
 %
 %
-% 	a is the vector of coefficients of the NARX model.
+%   Outputs:
 %
-% 	an is the vector of coefficients of the NARX model of the residue.
+% 	a: vector of floats, coefficients of the NARX model.
 %
-% 	xi is the reidue signal obtained form the last ELS iteration.
+% 	an: vector of floats, coefficients of the NARX model of the residue.
+%
+% 	xi: vector of floats, residue signal obtained form the last ELS iteration.
 
 function [a, an, xin] = NARMAXCompleteIdentification(signal1, signal2, Da, Dn, dataLength, divisions,  ...
     delta, degree, degree_n)

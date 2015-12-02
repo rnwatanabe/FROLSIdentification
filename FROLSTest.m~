@@ -54,7 +54,7 @@ phoL = 1e-2; % a lower value will give you more identified terms. A higher value
 %%
 if identifyModel    
     [Da, a, la, ERRs] = NARXModelIdentificationOf2Signals(input, output, degree, mu, my, delay, dataLength, divisions, ...
-       pho);
+        phoL, pho);
     %%
     identModel.terms = Da;
     identModel.termIndices = la;
@@ -137,7 +137,7 @@ if computeGFRF
         disp(['GFRF of order ' num2str(j) ': '])
         pretty(identModel.GFRF{j})
     end
-    %GFRF2LaTeX(identModel.GFRF, 'script', 'GFRF.tex', 3);
+    GFRF2LaTeX(identModel.GFRF, 'script', 'GFRF.tex', 3);
     plotGFRF(identModel.GFRF, 50, 4, 'centimeters', 16, 16, 2, 1, 1,...
                 2, 2, 0.3);
 else

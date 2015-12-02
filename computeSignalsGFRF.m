@@ -1,19 +1,24 @@
 %% Computes the GFRFs of a NARX model. It uses the Symbolic Toolbox of Matlab.
 %
+%   written by: Renato Naville Watanabe 
 %
 %	Hn = computeSignalsGFRF(Da, Fs, a, degree)
-%	where:
 %	
-% 	Da is a vector of strings with the NARX model terms.
 %
-% 	Fs is the sampling frequency, in Hz.
+%   Inputs:
+%	
+% 	Da: cell, contains the strings with the NARX model terms.
 %
-% 	a is the vector of coefficients of the NARX model.
+% 	Fs: float, the sampling frequency, in Hz.
 %
-% 	degree is the maximal order of GFRF you want to obtain.
+% 	a: vector of floats, coefficients of the NARX model.
+%
+% 	degree: integer, maximal order of GFRF you want to obtain.
 %
 %
-% 	Hn is a cell with the GFRFs of the NARX model.
+%   Outputs:
+%   
+% 	Hn: cell, contains the GFRFs of the NARX model.
 
 function Hn = computeSignalsGFRF(Da, Fs, a, degree)
     

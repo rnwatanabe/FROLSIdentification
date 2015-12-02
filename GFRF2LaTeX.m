@@ -1,19 +1,22 @@
 %% Transforms the symbolic GFRFs to LaTeX format, for publishing purposes.
 %
+%   written by: Renato Naville Watanabe 
 %
 %	GFRF2LaTeX(GFRF, size, filename, numberOfDigits)
-%	where:
+%	
 %
-%	GFRF is the cell with all the GFRFs.
+%   Inputs:
+%   
+%	GFRF: cell, contains all GFRFs.
 %
-%	size is a string with the specified math font size. For example: 'scriptscript' for 
+%	size: string, the specified math font size in LaTeX. For example: 'scriptscript' for 
 %	\scriptscriptstyle size.
 %
-%	filename is a string with the name of the file to store the LaTeX formatted GFRFs.
+%	filename: string, name of the file to store the LaTeX formatted GFRFs.
 %
-%       numberOfDigits is the number of digits to represent the float numbers.
+%   numberOfDigits: integer, number of digits to represent the float numbers.
 
-function outputString = GFRF2LaTeX(GFRF, size, filename, numberOfDigits)
+function GFRF2LaTeX(GFRF, size, filename, numberOfDigits)
     %%
     file = fopen(filename, 'w');
     degree = length(GFRF);

@@ -3,24 +3,22 @@
 %   written by: Renato Naville Watanabe 
 %
 %
-%	beta = mfrols(p, y, phoLinear, phoNLinear, s, flag)
-%	where:
+%	beta = mfrols(p, y, pho, s)
 %	
-% 	p is the matrix of candidates.
+%   Inputs:
+%	
+% 	p: matrix of floats, is the matrix of candidate terms.
 %
-% 	y is the output vector.
+% 	y: vector of floats, output signal.
 %
-% 	phoLinear is the stop criteria, in the case of flag=1, during the first 45 steps.
+% 	pho: float, stop criteria.
 %
-% 	phoNLinear is the stop criteria.
-%
-% 	s is the iteration step of the mfrols algorithm.
-%
-% 	flag can be 0 or 1. It is important if you want to obtain GFRF from your identified model. It
-%	guarantees that at least one term of he identified model will be a linear one. Normally flag=0 is OK.
+% 	s: integer, iteration step of the mfrols algorithm.
 %
 %
-%	beta is a vector with the coefficients of the chosen terms.
+%   Output:
+%
+%   beta: vector of floats, coefficients of the chosen terms.
 
 
 function beta = mfrols(p, y, pho, s)

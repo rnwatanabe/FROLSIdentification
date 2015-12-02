@@ -1,30 +1,32 @@
 % Implements the MFROLS algorithm (see page 97 from Billings, SA (2013)) using the Parallel toolbox, for performance purposes.
 %
+%   written by: Renato Naville Watanabe 
 %
-%	beta = mfrols_par(p, y, phoLinear, phoNLinear, s, flag)
-%	where:
+%
+%	beta = mfrols(p, y, pho, s)
 %	
-% 	p is the matrix of candidates.
+%   Inputs:
+%	
+% 	p: matrix of floats, is the matrix of candidate terms.
 %
-% 	y is the output vector.
+% 	y: vector of floats, output signal.
 %
-% 	phoLinear is the stop criteria, in the case of flag=1, duing the first 45 steps.
+% 	pho: float, stop criteria.
 %
-% 	phoNLinear is the stop criteria.
-%
-% 	s is the iteration step of the mfrols algorithm.
-%
-% 	flag can be 0 or 1. It is important if you want to obtain GFRF from your identified model. It
-%	guarantees that at least one term of he identified model will be a linear one. Normally flag=0 is OK.
+% 	s: integer, iteration step of the mfrols algorithm.
 %
 %
-%	beta is a vector with the coefficent values of the chosen terms.
+%   Output:
+%
+%   beta: vector of floats, coefficients of the chosen terms.
  
-function beta = mfrols_par(p, y, phoLinear, phoNLinear, s, flag)
+
+function beta = mfrols(p, y, pho, s)
     
+    % The global variables are used due to the lack of pointers in Matlab
     global l;
     global err ESR;
-    global An;
+    global A;
     global q g M0;
     beta = [];
     M = size(p,2);
@@ -33,25 +35,11 @@ function beta = mfrols_par(p, y, phoLinear, phoNLinear, s, flag)
     ERR=zeros(L,M);
     qs=zeros(size(p));
     %%
-    if (s<=45 && flag == 1)
-            mBegin = 1;
-            mEnd = 60;
-            pho = phoLinear;
-        else if (flag == 1)
-                mBegin = 1;
-                mEnd = M;
-                pho = phoNLinear;
-            else
-                mBegin = 1;
-                mEnd = M;
-                pho = phoNLinear;
-            end    
-    end   
     %%
     for j=1:L
         sigma = y(:,j)'*y(:,j);
         %qk(:,j,:) = squeeze(p(:,j,:));
-        parfor m=mBegin:mEnd
+        parfor m=1:M
             if (max(m*ones(size(l))==l)==0) 
                 %% The Gram-Schmidt method was implemented in a modified way, as shown in Rice, JR(1966)
                  qs(:,m,j) = p(:,m,j);
@@ -73,26 +61,27 @@ function beta = mfrols_par(p, y, phoLinear, phoNLinear, s, flag)
     err(s) = ERR_m(l(s));
     for j=1:L
         for r = 1:s-1
-            An(r, s, j) = (q(:,r,j)'*p(:,l(s),j))/(q(:,r,j)'*q(:,r,j));    
+            A(r, s, j) = (q(:,r,j)'*p(:,l(s),j))/(q(:,r,j)'*q(:,r,j));    
         end
-        An(s, s, j) = 1;
+        A(s, s, j) = 1;
         q(:, s,j) = qs(:,l(s),j);
         g(j,s) = gs(j,l(s));
     end    
     ESR = ESR - err(s);
     %D{l(s)}
     %% recursive call 
-   if (err(s) >= pho && s < M)
+    if (err(s) >= pho && s < M)
        s = s + 1; 
        clear qs 
        clear gs
-       beta = mfrols(p, y, phoLinear, phoNLinear, s, flag);
-   else
+       beta = mfrols(p, y, pho, s);
+    else
        M0 = s;
        s = s + 1;
        for j=1:L
-            beta(:,j) = An(:,:,j)\g(j,:)';
+            beta(:,j) = A(:,:,j)\g(j,:)';
        end       
-   end   
+    end   
 end
+
 

@@ -1,19 +1,23 @@
 %% Compute the FFT from the signal with the appropriate frequency resolution, and normalize by the length of the signal.
 % 
+%   written by: Renato Naville Watanabe 
 %
 %	[S, f] = computeSignalFFT(signal, Fs, fres)
-%	where:
 %	
-% 	signal is the vector with signal to have the FFT computed.
+%   Inputs:
+%	
+% 	signal: vector of floats, vector with signal to have the FFT computed.
 %
-% 	Fs is the sampling frequency, in Hz.
+% 	Fs: float, sampling frequency, in Hz.
 %
-% 	fres is the wanted frequency resolution, in Hz.
+% 	fres: float, the wanted frequency resolution, in Hz.
 %
 %
-% 	S is the signal FFT.
+%   Outputs:
+%   
+% 	S: vector of complex, the signal FFT.
 %
-% 	f is the vector of frequencies.
+% 	f: vector of floats, vector of frequencies.
 
 function [S, f] = computeSignalFFT(signal, Fs, fres)
     

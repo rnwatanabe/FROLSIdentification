@@ -1,14 +1,16 @@
 %% Runs the tests form Eq. 5.13 in Billings (2013).
 %
+%   written by: Renato Naville Watanabe 
 %
 %	validation(u, xi,maxLag)
-%	where:
+%	
+%   Inputs:
 %
-% 	u is the matrix in which each column is an input signal for each trial used in the identfication.
+% 	u: matrix, each column is an input signal for each trial used in the identfication.
 %
-% 	xi is the residue obtained after the identification process.
+% 	xi: vector, is the residue obtained after the identification process.
 %
-% 	maxLag is the maximal lag to display in the plots. Usually it is good to show up the maxLag of the model.
+% 	maxLag: integer, maximal lag to display in the plots. Usually it is good to plot until the maxLag of the model.
 
 
 function validation(u, xi,maxLag)

@@ -1,28 +1,33 @@
 %% Computes the NOFRF (Nonlinear Output Frequency Response Function) for the specified input.
 %
+%   written by: Renato Naville Watanabe 
 %
 %	[NOFRF, f] = computeNOFRF(Hn, X, maxDegree, Fs, fres, fmin, fmax)
-%	where:
+%	
+%   
+%   Inputs:
+%   
+% 	Hn: cell, contains all the GFRFs until the specified degree.
 %
-% 	Hn is the cell with all the GFRFs until the specified degree.
+% 	X: vector of complex, the FFT of the input signal obtained with the computeSignalFFT function.
 %
-% 	X is the FFT of the input signal obtained with the computeSignalFFT function.
+% 	maxDegree: integer, the maximal degree to have the NOFRF computed.
 %
-% 	maxDegree is the maximal degree to have the NOFRF computed.
+% 	Fs: float, sampling frequency, in Hz.
 %
-% 	Fs is the sampling frequency, in Hz.
+% 	fres: float, frequency resolution of the FFT, in Hz.
 %
-% 	fres is the frequency resolution of the FFT, in Hz.
+% 	fmin: float, lower frequency limit of the NOFRF computation.
 %
-% 	fmin in the lower frequency limit of the NOFRF computation.
-%
-% 	fmax in the upper frequency limit of the NOFRF computation.
+% 	fmax: float, upper frequency limit of the NOFRF computation.
 %
 %
-% 	NOFRF is a vector with the NOFRF of the system for the given input at
+%   Outputs:
+%
+% 	NOFRF: vector of complex, the NOFRF of the system for the given input at
 %	each frequency.
 %
-% 	f is the vector of frequencies.
+% 	f: vector of floats, the vector of frequencies.
 
 function [NOFRF, f] = computeNOFRF(Hn, X, maxDegree, Fs, fres, fmin, fmax)
     H1 = matlabFunction(Hn{1});

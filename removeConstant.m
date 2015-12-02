@@ -1,14 +1,18 @@
 %% Function to remove a constant term from the identified model, in the case of the constant term ('1') was 
 %	identified. This is necessary for the computation of GFRFs.
 %
+%   written by: Renato Naville Watanabe 
 %
 %	[Da, a] = removeConstant(Da, a)
-%	where:
 %	
-% 	Da is a vector of strings with the NARX model terms.
+%	Inputs:
 %
-% 	a is the vector of coefficients of the NARX model.
+% 	Da: cell, contains strings with the NARX model terms.
 %
+% 	a: vector,  coefficients of the NARX model.
+%
+%   
+%   Outputs:
 %
 % 	The Da and a vectors are the same of the input, except for the deletion of the constant term. 
 

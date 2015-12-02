@@ -1,31 +1,36 @@
-%% function to build the P matrix for the FROLS identification process of the residue from the system identification 
+%% Function to build the P matrix for the FROLS identification process of the residue from the system identification 
 %of the signals
 %
+%   written by: Renato Naville Watanabe 
 %
 %	[p, D] = buildPNoiseMatrix(u, y, e, degree, mu, my, me, delay)
-%	where:
+%	
 %
-% 	u is the input signal.
+%   Inputs:
 %
-% 	y is the output signal.
+% 	u: vector of floats, input signal.
 %
-% 	e is the residue signal.
+% 	y: vector of floats, output signal.
 %
-% 	degree is the maximal polynomial degree that you want the FROLS method to look for (it has been tested until the 9th 
+% 	e: vector of floats, residue signal.
+%
+% 	degree: integer, maximal polynomial degree that you want the FROLS method to look for (it has been tested until the 9th 
 %	degree).
 %
-% 	mu is the maximal lag of the input signal.
+% 	mu: integer, the maximal lag of the input signal.
 %
-% 	my is the maximal lag of the output signal.
+% 	my: integer, the maximal lag of the output signal.
 %
-% 	me is the maximal lag of the residue signal.
+% 	me: integer, the maximal lag of the residue signal.
 %
-% 	delay is how much lags you want to not consider in the input terms. It comes from a previous knowledge of your system.
+% 	delay: integer, how much lags you want to not consider in the input terms. It comes from a previous knowledge of your system.
 %
 %
-% 	p is the matrix used in the identification process of the residue of the system identification by the FROLS algorithm. 
+%   Outputs:
 %
-% 	D is a vector of strings with candidate terms. Each element of D corresponds to a column of the P matrix.
+% 	p: matrix of floats, the matrix used in the identification process of the residue of the system identification by the FROLS algorithm. 
+%
+% 	D: cell, contains the strings with candidate terms. Each element of D corresponds to a column of the P matrix.
 
 function [p, D] = buildPNoiseMatrix(u, y, e, degree, mu, my, me, delay)
     N=length(u);

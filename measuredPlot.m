@@ -5,30 +5,34 @@
 %
 %   ha = measuredPlot(numberOfRows, numberOfCols, unit, height, width, gapVertical, gapHorizontal, marginTop, ...
 %    marginBottom, marginLeft, marginRight)
-%   where:
+%   
+%
+%   Inputs:
 %
 %   numberOfRows is the number of subplot rows that the figure will have.
 %
 %   numberOfCols is the number of subplot columns that the figure will have.
 %
-%   unit is a string with the length unit to be used. Possible units are 'pixels', 'normalized', 'inches', 
+%   unit: string, length unit to be used. Possible units are 'pixels', 'normalized', 'inches', 
 %   'centimeters', 'points' and 'characters'.
 %
-%   figureHeight is the height of each plot, in the established unit.
+%   figureHeight: float, height of each plot, in the established unit.
 %
-%   figureWidth is the width of each plot, in the established unit.
+%   figureWidth: float, width of each plot, in the established unit.
 %
-%   gapVertical is the vertical gap between the plots, in the established unit.
+%   gapVertical: float, vertical gap between the plots, in the established unit.
 %
-%   gapHorizontal is the horizontal gap between the plots, in the established unit.
+%   gapHorizontal: float, horizontal gap between the plots, in the established unit.
 %
-%   marginTop is the margin in the top of the figure, in the established unit.
+%   marginTop: float, margin in the top of the figure, in the established unit.
 %
-%   marginBottom is the margin in the bottom of the figure, in the established unit.
+%   marginBottom: float, margin in the bottom of the figure, in the established unit.
 %
-%   marginLeft is the margin in the left side of the figure, in the established unit.
+%   marginLeft: float, margin in the left side of the figure, in the established unit.
 %
-%   marginRight is the margin in the right side of the figure, in the established unit.
+%   marginRight: float, margin in the right side of the figure, in the established unit.
+
+
 
 function ha = measuredPlot(numberOfRows, numberOfCols, unit, height, width, gapVertical, gapHorizontal, marginTop, ...
     marginBottom, marginLeft, marginRight)

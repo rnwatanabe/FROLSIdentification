@@ -2,11 +2,16 @@
 %	and the correspondibg lags. It is used during the identification of the NARMAX model to read 
 %	the vector of strings D.
 %
+%   written by: Renato Naville Watanabe 
 %
 %	ind = modelLags(D)
-%	where:
+%	
+%   Inputs:
 %
-% 	D is a vector of strings with the chosen terms.
+% 	D: cell, contains the strings with the terms of a NARX model.
+%
+%   
+%   Outputs:
 %
 % 	ind is a vector with the following format:
 % 	___________________
@@ -15,16 +20,16 @@
 %		this format of vector continues to represent a term of multiplied inputs, outputs and residue.
 % 	Example:
 % 	u(k-1)u(k-2)y(k-5)e(k-2) corresponds to:
-% 	      _________
+% 	    _________
 %	     |   117   |
-%  	     |    1    |
-%      ind = |   117   |
-%      	     |    2    |
-%  	     |   121   |
-%      	     |    5    |
-%            |   101   |
-%            |    2    |
-%            |_________|
+%  	   |    1    |
+%ind = |   117   |
+%      |    2    |
+%      |   121   |
+%      |    5    |
+%      |   101   |
+%      |    2    |
+%      |_________|
 %
 
 function ind = modelLags(D)
