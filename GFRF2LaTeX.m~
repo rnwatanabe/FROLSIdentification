@@ -64,10 +64,12 @@ function GFRF2LaTeX(GFRF, size, filename, numberOfDigits)
         if i == degree
             outputString = strcat(outputString, '\n');
         else
+            %fprintf(file, '\\\\ \n');
             outputString = strcat(outputString, '\\\\ \n');
         end
         
     end
+    %fprintf(file, '\\end{align}');
     outputString = strcat(outputString, '\\end{align}');
     fprintf(file, outputString);
     digits(D);
