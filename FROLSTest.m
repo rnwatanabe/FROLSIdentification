@@ -6,12 +6,12 @@ clc
 
 
 %% steps to perform
-identifyModel = true;
-identifyNoise = true;
-identifyComplete = true;
+identifyModel = false;
+identifyNoise = false;
+identifyComplete = false;
 computeGFRF = true; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
                     %identification will work normally
-computeNOFRF = true; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
+computeNOFRF = false; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
                     %identification will work normally
 
 %% data
@@ -139,7 +139,7 @@ if computeGFRF
     end
     %GFRF2LaTeX(identModel.GFRF, 'script', 'GFRF.tex', 3);
     plotGFRF(identModel.GFRF, 50, 4, 'centimeters', 16, 16, 2, 1, 1,...
-                2, 2, 0.3);
+                2, 2, 0.3, 'linear', 'linear');
 else
     load(['testIdentifiedModel' num2str(Fs) '.mat']);      
 end

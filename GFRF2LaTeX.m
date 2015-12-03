@@ -42,14 +42,14 @@ function GFRF2LaTeX(GFRF, size, filename, numberOfDigits)
         %% GFRF
         [num, den] = numden(GFRF{i});
         %% numerator
-        numString = latex(vpa(collect(num)));
+        numString = latex(vpa((num)));
         numString = strrep(numString, '\','\\');
         for j = 1:i
            numString = strrep(numString, strcat('\\mathrm{f',num2str(j),'}'), strcat('f_',num2str(j)));
         end
         numString = strrep(numString, '\\mathrm{i}','j');
         %% denominator
-        denString = latex(vpa(collect(den)));
+        denString = latex(vpa((den)));
         denString = strrep(denString, '\','\\');
         for j = 1:i
            denString = strrep(denString, strcat('\\mathrm{f',num2str(j),'}'), strcat('f_',num2str(j)));

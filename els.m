@@ -91,7 +91,7 @@ function [p, betan, xin, yest] = els(pp, pn, Mp, u, y, delta, degree, degreen, m
         clear p11
         difference(j) = sum(abs(betan(1:Mp,j) - beta(1:Mp,j))./abs(betan(1:Mp,j)));
     end       
-    if (max(difference) > delta && t<20)
+    if (max(difference) > delta && t<3)
         clear xi;
         clear W Wk yest  xi
         t = t + 1;

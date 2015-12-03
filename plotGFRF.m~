@@ -83,7 +83,7 @@ function plotGFRF(GFRF, fmax, slices, unit, figureHeight, figureWidth, gapVertic
                     marginBottom, marginLeft, marginRight);
             
             axes(ha(1));
-            freq = [linspace(-fmax, 0, 50) linspace(0, fmax, 50)];
+            freq = [linspace(-fmax, 0, fmax) linspace(0, fmax, 50)];
             plot(scaleFreq(freq), scaleGFRF(Hfun(freq)))
             xlabel('f (Hz)');
             ylabel('H_1')
@@ -96,7 +96,7 @@ function plotGFRF(GFRF, fmax, slices, unit, figureHeight, figureWidth, gapVertic
                     freq1 = [linspace(-fmax, 0, 10) linspace(0, fmax, 10)];
                     freq2 = [linspace(-fmax, 0, 10) linspace(0, fmax, 10)];
                     [F1,F2] = meshgrid(freq1,freq2);
-                    h = surf(scaleFreq(F1), scaleFreq(F2), scaleGFRF(Hfun(F1,F2))); title('');
+                    h = contourf(scaleFreq(F1), scaleFreq(F2), scaleGFRF(Hfun(F1,F2))); title('');
                     %set(h, 'EdgeColor', 'none', 'FaceColor','interp')
                     xlabel('f_1 (Hz)');
                     ylabel('f_2 (Hz)');
@@ -126,7 +126,7 @@ function plotGFRF(GFRF, fmax, slices, unit, figureHeight, figureWidth, gapVertic
                         freq1 = [linspace(-fmax, 0, 20) linspace(0, fmax, 20)];
                         freq2 = [linspace(-fmax, 0, 20) linspace(0, fmax, 20)];
                         [F1,F2] = meshgrid(freq1,freq2);
-                        eval(['h = surf(scaleFreq(F1), scaleFreq(F2), scaleGFRF(Hfun(' fString ')));']); 
+                        eval(['h = contourf(scaleFreq(F1), scaleFreq(F2), scaleGFRF(Hfun(' fString ')));']); 
                         %set(h, 'EdgeColor', 'none', 'FaceColor','interp')
                         title(titleString, 'FontWeight', 'Bold');
                         if (mod(j+1,numberOfCols) == 1)

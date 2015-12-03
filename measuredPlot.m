@@ -42,6 +42,7 @@ function ha = measuredPlot(numberOfRows, numberOfCols, unit, height, width, gapV
     axesHeight = (height - (marginTop + marginBottom) - (numberOfRows - 1) * gapVertical) / numberOfRows;
     
     % Obtain screed dimensions to place figure in the centre
+    
     set(0, 'units', unit);
     screensize = get(0, 'screensize');
     figureSize = [ screensize(3)/2 - width/2  screensize(4)/2 - height/2 width height];
