@@ -5,8 +5,8 @@
 
 The files in this repository were written to perform the system identification of nonlinear systems. The method used is the algorithm known as Forward Regression with Orthogonal Least Squares (FROLS), developed by Stephen Billings and his group. All the files were written by me, except the v2struct.m file, used to deal with the structs from Matlab.
 
-Installation
--------------
+How to use the files 
+-------------------
 
 Download all the files in the same directory. The files were written to run in the Matlab<sup>&reg;</sup> platform, so if you want to run them on Matlab<sup>&reg;</sup>, you will need a license of the Matlab<sup>&reg;</sup> software. To run the functions that compute the Generalized Frequency Response Function (GFRF) and Nonlinear Output Frequency Response Function (NOFRF), you will need a license of the Matlab<sup>&reg;</sup> Symbolic Math Toolbox<sup>&trade;</sup>. 
 
