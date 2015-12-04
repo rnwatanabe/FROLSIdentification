@@ -76,20 +76,20 @@ function plotGFRF(GFRF, fmax, slices, unit, figureHeight, figureWidth, gapVertic
     %%
     numberOfGFRFs = length(GFRF);
     for i = 1:numberOfGFRFs
-        Hfun = matlabFunction((abs(GFRF{i})));
-        figure
-        if nargin(Hfun) == 1
-            ha = measuredPlot(1, 1, unit, figureHeight, figureWidth, gapVertical, gapHorizontal, marginTop, ...
-                    marginBottom, marginLeft, marginRight);
-            
-            axes(ha(1));
-            freq = [linspace(-fmax, 0, 50) linspace(0, fmax, 50)];
-            plot(scaleFreq(freq), scaleGFRF(Hfun(freq)))
-            xlabel('f (Hz)');
-            ylabel('H_1')
-            set(gca, 'Box','On', 'LineWidth', 2);
-        else if nargin(Hfun) == 2
-                if GFRF{i} ~= 0
+        if  logical(GFRF{i} ~= 0)
+            Hfun = matlabFunction((abs(GFRF{i})));
+            figure
+            if nargin(Hfun) == 1
+                ha = measuredPlot(1, 1, unit, figureHeight, figureWidth, gapVertical, gapHorizontal, marginTop, ...
+                        marginBottom, marginLeft, marginRight);
+
+                axes(ha(1));
+                freq = [linspace(-fmax, 0, 50) linspace(0, fmax, 50)];
+                plot(scaleFreq(freq), scaleGFRF(Hfun(freq)))
+                xlabel('f (Hz)');
+                ylabel('H_1')
+                set(gca, 'Box','On', 'LineWidth', 2);
+            else if nargin(Hfun) == 2                
                     ha = measuredPlot(1, 1, unit, figureHeight, figureWidth, gapVertical, gapHorizontal, marginTop, ...
                         marginBottom, marginLeft, marginRight + 1.9);
                     axes(ha(1));
@@ -104,9 +104,7 @@ function plotGFRF(GFRF, fmax, slices, unit, figureHeight, figureWidth, gapVertic
                     c1 = colorbar('location', 'East', 'units','centimeters','Position',[p(1)+p(3)+1.3 p(2) 0.7 p(4)]);
                     axes(ha(end))
                     set(gca,'Position', p,'Box','On', 'LineWidth', 2);
-                end
-            else
-                if GFRF{i} ~= 0
+                else
                     numberOfRows = ceil(sqrt(slices));
                     numberOfCols = ceil(sqrt(slices));                
                     ha = measuredPlot(numberOfRows, numberOfCols, unit, figureHeight, figureWidth, gapVertical, gapHorizontal, marginTop, ...
