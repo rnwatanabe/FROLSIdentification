@@ -40,14 +40,16 @@ function [NOFRF, f] = computeNOFRF(Hn, X, maxDegree, Fs, fres, fmin, fmax)
     end
     
     for i = 2:maxDegree
-       HnFunction = matlabFunction(Hn{i});
-       for j = 1:length(f)
-           if f(j) == 0
-              NOFRFConst = 1; 
-           else
-              NOFRFConst = 2; 
-           end
-           NOFRF(j) = NOFRF(j) +  NOFRFConst * computeDegreeNOFRF(HnFunction, X, Fs, i, f(j), fres);
-       end       
+       if  logical(Hn{i} ~= 0)
+           HnFunction = matlabFunction(Hn{i});
+           for j = 1:length(f)
+               if f(j) == 0
+                  NOFRFConst = 1; 
+               else
+                  NOFRFConst = 2; 
+               end
+               NOFRF(j) = NOFRF(j) +  NOFRFConst * computeDegreeNOFRF(HnFunction, X, Fs, i, f(j), fres);
+           end 
+       end
     end  
 end

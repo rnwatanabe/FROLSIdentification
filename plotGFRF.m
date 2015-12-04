@@ -97,13 +97,14 @@ function plotGFRF(GFRF, fmax, slices, unit, figureHeight, figureWidth, gapVertic
                     freq2 = [linspace(-fmax, 0, 10) linspace(0, fmax, 10)];
                     [F1,F2] = meshgrid(freq1,freq2);
                     h = surf(scaleFreq(F1), scaleFreq(F2), scaleGFRF(Hfun(F1,F2))); title('');
-                    %set(h, 'EdgeColor', 'none', 'FaceColor','interp')
+                    set(h, 'EdgeColor', 'none', 'FaceColor','interp')
                     xlabel('f_1 (Hz)');
                     ylabel('f_2 (Hz)');
                     p = get(gca, 'Position');
                     c1 = colorbar('location', 'East', 'units','centimeters','Position',[p(1)+p(3)+1.3 p(2) 0.7 p(4)]);
                     axes(ha(end))
                     set(gca,'Position', p,'Box','On', 'LineWidth', 2);
+                    axis([-fmax fmax -fmax fmax]);
                 else
                     numberOfRows = ceil(sqrt(slices));
                     numberOfCols = ceil(sqrt(slices));                
@@ -125,7 +126,7 @@ function plotGFRF(GFRF, fmax, slices, unit, figureHeight, figureWidth, gapVertic
                         freq2 = [linspace(-fmax, 0, 20) linspace(0, fmax, 20)];
                         [F1,F2] = meshgrid(freq1,freq2);
                         eval(['h = surf(scaleFreq(F1), scaleFreq(F2), scaleGFRF(Hfun(' fString ')));']); 
-                        %set(h, 'EdgeColor', 'none', 'FaceColor','interp')
+                        set(h, 'EdgeColor', 'none', 'FaceColor','interp')
                         title(titleString, 'FontWeight', 'Bold');
                         if (mod(j+1,numberOfCols) == 1)
                             ylabel('f_2 (Hz)'); 
@@ -139,6 +140,7 @@ function plotGFRF(GFRF, fmax, slices, unit, figureHeight, figureWidth, gapVertic
                         end
                         p = get(gca, 'Position');
                         set(gca,'Position', p,'Box','On', 'LineWidth', 2);
+                        axis([-fmax fmax -fmax fmax]);
                     end
                     c1 = colorbar('location', 'East', 'units','centimeters','Position',[p(1)+p(3)+1.3 p(2) 0.7 numberOfRows*p(4) + (numberOfRows-1) * gapVertical]);
                     axes(ha(end))
