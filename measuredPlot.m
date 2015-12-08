@@ -1,13 +1,13 @@
-%% Builds a set of subplots with the specified measures.
+% Builds a set of subplots with the specified measures.
 %
-%   written by: Renato Naville Watanabe 
+% written by: Renato Naville Watanabe 
 %
 %
-%   ha = measuredPlot(numberOfRows, numberOfCols, unit, height, width, gapVertical, gapHorizontal, marginTop, ...
-%    marginBottom, marginLeft, marginRight)
+% ha = measuredPlot(numberOfRows, numberOfCols, unit, height, width, gapVertical, gapHorizontal, marginTop, ...
+%   marginBottom, marginLeft, marginRight)
 %   
 %
-%   Inputs:
+% Inputs:
 %
 %   numberOfRows is the number of subplot rows that the figure will have.
 %

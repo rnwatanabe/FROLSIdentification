@@ -1,30 +1,30 @@
-%% function to build the P matrix for the FROLS identification process
+% Function to build the P matrix for the FROLS identification process
 %
-%   written by: Renato Naville Watanabe 
+% written by: Renato Naville Watanabe 
 %
-%	[p, D] = buildPMatrix(u, y, degree, mu, my, delay)
+% [p, D] = buildPMatrix(u, y, degree, mu, my, delay)
 %	
-%   Inputs:
+% Inputs:
 %
-%	u: vector of floats, input signal.
+%   u: vector of floats, input signal.
 %
-% 	y: vector of floats, output signal.
+%   y: vector of floats, output signal.
 %
-% 	degree: integer, maximal polynomial degree that you want the FROLS method to look for (it has been tested until the
-%	9th degree).
+%   degree: integer, maximal polynomial degree that you want the FROLS method to look for (it has been tested until the
+%   9th degree).
 %
-% 	mu: integer, the maximal lag of the input signal.
+%   mu: integer, the maximal lag of the input signal.
 %	
-% 	my: integer, the maximal lag of the output signal.
+%   my: integer, the maximal lag of the output signal.
 %
-% 	delay: integer, how much lags you want to not consider in the input terms. It comes from a previous knowledge of your system
+%   delay: integer, how much lags you want to not consider in the input terms. It comes from a previous knowledge of your system
 %
 %
-%   Outputs:
+% Outputs:
 %   
-% 	p: matrix of floats, the P matrix to be used in the identification process by the FROLS algorithm. 
+%   p: matrix of floats, the P matrix to be used in the identification process by the FROLS algorithm. 
 %
-% 	D: cell, contains the strings with the candidate terms. Each element of D corresponds to a column of the P matrix.
+%   D: cell, contains the strings with the candidate terms. Each element of D corresponds to a column of the P matrix.
 
 function [p, D] = buildPMatrix(u, y, degree, mu, my, delay)
     N=length(u);

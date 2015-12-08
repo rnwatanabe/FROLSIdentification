@@ -1,48 +1,48 @@
-%% Implements the extended least squares algorithm (as shown in Isermann, R. and Muenchhoff, M. (2011), page 295)
+% Implements the extended least squares algorithm (as shown in Isermann, R. and Muenchhoff, M. (2011), page 295)
 %
-%   written by: Renato Naville Watanabe 
+% written by: Renato Naville Watanabe 
 %
-%   [p, betan, xin, yest] = els(pp, pn, Mp, u, y, delta, degree, degreen, maxLag, xi, I, beta)
+% [p, betan, xin, yest] = els(pp, pn, Mp, u, y, delta, degree, degreen, maxLag, xi, I, beta)
 %	
 %
-%   Inputs:
+% Inputs:
 %
-% 	pp: matrix of floats, the matrix of the terms of the model.
+%   pp: matrix of floats, the matrix of the terms of the model.
 %
-% 	pn: matrix of floats, the matrix of the terms of the model of the residue.
+%   pn: matrix of floats, the matrix of the terms of the model of the residue.
 %
-% 	Mp: integer, the number of terms in the identified model, without the residue.
+%   Mp: integer, the number of terms in the identified model, without the residue.
 %
-% 	u: vector of floats, the input vector.
+%   u: vector of floats, the input vector.
 %
-% 	y: vector of floats, the output vector.
+%   y: vector of floats, the output vector.
 %
-% 	delta: float, stop criteria to the optimization of the coefficient values (is the  difference between the coefficients 
-%	from this and the last step).
+%   delta: float, stop criteria to the optimization of the coefficient values (is the  difference between the coefficients 
+%   from this and the last step).
 %
-% 	degree: integer maximal polynomial degree of the model.
+%   degree: integer maximal polynomial degree of the model.
 %
-% 	degreen: ineteger, maximal polynomial degree of the residue model.
+%   degreen: ineteger, maximal polynomial degree of the residue model.
 %
-% 	maxLag: integer, maximal Lag existent in the model.
+%   maxLag: integer, maximal Lag existent in the model.
 %
-% 	xi: vector of floats, residue signal of the last step. In the first call you can simply put a vector of zeros of the same length of u.
+%   xi: vector of floats, residue signal of the last step. In the first call you can simply put a vector of zeros of the same length of u.
 %
-% 	I: cell, obtained from the modelLags function.
+%   I: cell, obtained from the modelLags function.
 %
-% 	beta: vector of floats, coefficients vector of the last step of the ELS execution. In the first call, you can put the coefficients
-%	vector originated from the FROLS identification or other method that you ave used.
+%   beta: vector of floats, coefficients vector of the last step of the ELS execution. In the first call, you can put the coefficients
+%   vector originated from the FROLS identification or other method that you ave used.
 %
 %
-%   Outputs:
+% Outputs:
 %
-% 	p: matrix of floats, is the matrix pp (in the case of t=0) or the concatenation of pp and pn (otherwise).
+%   p: matrix of floats, is the matrix pp (in the case of t=0) or the concatenation of pp and pn (otherwise).
 %
-% 	betan: vector of floats, coefficients vector found in this step of the ELS execution.
+%   betan: vector of floats, coefficients vector found in this step of the ELS execution.
 %
-% 	xin: vector of floats, residue signal of  this step.
+%   xin: vector of floats, residue signal of  this step.
 %
-% 	yest: vector of floats, output signal estimated by the osaELS function.
+%   yest: vector of floats, output signal estimated by the osaELS function.
 
 
 

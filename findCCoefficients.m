@@ -1,32 +1,32 @@
-%% Find the coeficcients of the coefficients in the format of Equation 6.46 of Billings (2013).
+% Find the coefficients of the coefficients in the format of Equation 6.46 of Billings (2013).
 %
-%   written by: Renato Naville Watanabe 
+% written by: Renato Naville Watanabe 
 %
-%	[C, maxLag] = findCCoefficients(a, I)
+% [C, maxLag] = findCCoefficients(a, I)
 %	
 %
-%   Inputs:
+% Inputs:
 %   
-%	a: vector of floats, coefficients of the NARX model.
+%   a: vector of floats, coefficients of the NARX model.
 %
-% 	I: cell, obtained from the modelLags functions.
+%   I: cell, obtained from the modelLags functions.
 %
 %
-%   Outputs:
+% Outputs:
 %   
-% 	C: struct, contains the coefficients of the model, in the format of Equation 6.46 of Billings (2013):
-%	C.c_pq where:
-%	p is  the number that the output signal appears in a term.
-%	q is  the number that the input signal appears in a term.
-% 	For example, a model with the following terms:
-% 	y(k) = -2*y(k-1) + 4*y(k-2) - 1.5*u(k-5) + 10.5*u(k-6)y(k-2)
-% 	has the following C struct:
-% 	C.c_10 = [-2 4]
-% 	C.c_01 = [0 0 0 0 -1.5]
-% 	C.c11 = [0 0 0 0 0 0;...
-%		 0 0 0 0 0 10.5]
+%   C: struct, contains the coefficients of the model, in the format of Equation 6.46 of Billings (2013):
+%   C.c_pq where:
+%   p is  the number that the output signal appears in a term.
+%   q is  the number that the input signal appears in a term.
+%   For example, a model with the following terms:
+%   y(k) = -2*y(k-1) + 4*y(k-2) - 1.5*u(k-5) + 10.5*u(k-6)y(k-2)
+%   has the following C struct:
+%   C.c_10 = [-2 4]
+%   C.c_01 = [0 0 0 0 -1.5]
+%   C.c11 = [0 0 0 0 0 0;...
+%            0 0 0 0 0 10.5]
 %
-% 	maxLag: integer, maximal Lag of the model.
+%   maxLag: integer, maximal Lag of the model.
 
 
 function [C, maxLag] = findCCoefficients(a, I)

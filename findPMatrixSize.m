@@ -1,20 +1,20 @@
 % Finds the number of terms in the matrizx p (see page 36 from Billings, SA (2013)).
 %
-%   written by: Renato Naville Watanabe 
+% written by: Renato Naville Watanabe 
 %
-%	size = findPMatrixSize(mu, my, degree)
+% size = findPMatrixSize(mu, my, degree)
 %	
 %
-%   Inputs:
+% Inputs:
 %   
-% 	mu: integer, maximal lag for the input signal.
+%   mu: integer, maximal lag for the input signal.
 %
-% 	my: ineteger, maximal lag for the output signal.
+%   my: ineteger, maximal lag for the output signal.
 %
 %
-%   Outputs:
+% Outputs:
 %
-% 	size: integer, number of candidates for the identification process.
+%   size: integer, number of candidates for the identification process.
 
 function size = findPMatrixSize(mu, my, degree)
     n = mu + my;

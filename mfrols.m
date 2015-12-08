@@ -1,22 +1,22 @@
 % Implements the MFROLS algorithm (see page 97 from Billings, SA (2013)).
 %
-%   written by: Renato Naville Watanabe 
+% written by: Renato Naville Watanabe 
 %
 %
-%	beta = mfrols(p, y, pho, s)
+% beta = mfrols(p, y, pho, s)
 %	
-%   Inputs:
+% Inputs:
 %	
-% 	p: matrix of floats, is the matrix of candidate terms.
+%   p: matrix of floats, is the matrix of candidate terms.
 %
-% 	y: vector of floats, output signal.
+%   y: vector of floats, output signal.
 %
-% 	pho: float, stop criteria.
+%   pho: float, stop criteria.
 %
-% 	s: integer, iteration step of the mfrols algorithm.
+%   s: integer, iteration step of the mfrols algorithm.
 %
 %
-%   Output:
+% Output:
 %
 %   beta: vector of floats, coefficients of the chosen terms.
 

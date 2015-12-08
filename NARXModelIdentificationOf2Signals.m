@@ -1,48 +1,48 @@
-%% This function performs the identification of a NARX model that represents the dynamic of the system with signal1 as 
-%input and signal2 as output.
+% This function performs the identification of a NARX model that represents the dynamic of the system with signal1 as 
+% input and signal2 as output.
 %
-%   written by: Renato Naville Watanabe 
+% written by: Renato Naville Watanabe 
 %
 %
-% 	[Da, a, la, ERRs] = NARXModelIdentificationOf2Signals(signal1, signal2, degree, mu, my, delay, dataLength, ...
-%	divisions, pho)
+% [Da, a, la, ERRs] = NARXModelIdentificationOf2Signals(signal1, signal2, degree, mu, my, delay, dataLength, ...
+% divisions, pho)
 %	
-%   Inputs:
+% Inputs:
 %
-% 	signal1: matrix of floats, input signal. It can contain multiple trials of the same system. Each trial must be in one 
-%	column of the signal1 matrix.
+%   signal1: matrix of floats, input signal. It can contain multiple trials of the same system. Each trial must be in one 
+%   column of the signal1 matrix.
 %
-% 	signal2: matrix of floats, output signal. It can contain multiple trials of the same system. Each trial must be in one 
-%	column of the signal2 matrix. Each column of signal2 must be correspondent to the same column number of signal1.
+%   signal2: matrix of floats, output signal. It can contain multiple trials of the same system. Each trial must be in one 
+%   column of the signal2 matrix. Each column of signal2 must be correspondent to the same column number of signal1.
 %
-% 	degree: integer, maximal polynomial degree that you want the FROLS method to look for (it has been tested until the 
-%	9th degree).
+%   degree: integer, maximal polynomial degree that you want the FROLS method to look for (it has been tested until the 
+%   9th degree).
 %
-% 	mu: integer, maximal lag of the input signal.
+%   mu: integer, maximal lag of the input signal.
 %
-% 	my: integer, maximal lag of the output signal.
+%   my: integer, maximal lag of the output signal.
 %
-% 	delay: integer, lags you want to not consider in the input terms. It comes from a previous knowledge of 
-%	your system.
+%   delay: integer, lags you want to not consider in the input terms. It comes from a previous knowledge of 
+%   your system.
 %
-% 	dataLength: integer, number of steps of each column of the signal1 and 2 matrices to consider during the 
-%	identification of the system. Normally a very high number do not leads to good results. 
-%	400 to 600 should be fine.
+%   dataLength: integer, number of steps of each column of the signal1 and 2 matrices to consider during the 
+%   identification of the system. Normally a very high number do not leads to good results. 
+%   400 to 600 should be fine.
 %
-% 	divisions: integer: number of data parts (of dataLength length) to consider from each trial (each column) 
-%	of the signals.
+%   divisions: integer: number of data parts (of dataLength length) to consider from each trial (each column) 
+%   of the signals.
 %
-% 	pho: float, stop criteria.
+%   pho: float, stop criteria.
 %
 %
-%   Outputs:
+% Outputs:
 %
-% 	Da: cell, contains the strings with the terms found during the system idetification. u is the input 
-%	signal and y is the output signal.
+%   Da: cell, contains the strings with the terms found during the system idetification. u is the input 
+%   signal and y is the output signal.
 %
-% 	a: vector of floats, coefficients of the chosen terms during the identification of the system.
+%   a: vector of floats, coefficients of the chosen terms during the identification of the system.
 %
-% 	l: vector of integers, indices of the chosen terms during the identification of the system.
+%   l: vector of integers, indices of the chosen terms during the identification of the system.
 
 
 function [Da, a, la, ERRs] = NARXModelIdentificationOf2Signals(signal1, signal2, degree, mu, my, delay, dataLength, ...

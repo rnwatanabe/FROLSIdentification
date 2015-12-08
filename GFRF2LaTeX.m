@@ -1,18 +1,18 @@
-%% Transforms the symbolic GFRFs to LaTeX format, for publishing purposes.
+% Transforms the symbolic GFRFs to LaTeX format, for publishing purposes.
 %
-%   written by: Renato Naville Watanabe 
+% written by: Renato Naville Watanabe 
 %
-%	GFRF2LaTeX(GFRF, size, filename, numberOfDigits)
+% GFRF2LaTeX(GFRF, size, filename, numberOfDigits)
 %	
 %
-%   Inputs:
+% Inputs:
 %   
-%	GFRF: cell, contains all GFRFs.
+%   GFRF: cell, contains all GFRFs.
 %
-%	size: string, the specified math font size in LaTeX. For example: 'scriptscript' for 
-%	\scriptscriptstyle size.
+%   size: string, the specified math font size in LaTeX. For example: 'scriptscript' for 
+%   \scriptscriptstyle size.
 %
-%	filename: string, name of the file to store the LaTeX formatted GFRFs.
+%   filename: string, name of the file to store the LaTeX formatted GFRFs.
 %
 %   numberOfDigits: integer, number of digits to represent the float numbers.
 

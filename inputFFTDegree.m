@@ -1,22 +1,22 @@
-%% Computes the FFT of the specified degree at the specified frequency combinations.
+% Computes the FFT of the specified degree at the specified frequency combinations.
 %
-%   written by: Renato Naville Watanabe 
+%written by: Renato Naville Watanabe 
 %
 %	degreeFFT = inputFFTDegree(X, freqIndex, degree)
 %	
-%   Inputs:
+% Inputs:
 %
-% 	X, vector of complex, FFT of the signal.
+%   X: vector of complex, FFT of the signal.
 %
-% 	freqIndex: cell, contains the frequency vectors in which the FFT of the specified degree must be
+%   freqIndex: cell, contains the frequency vectors in which the FFT of the specified degree must be
 %   computed.
 %
-% 	degree: integer, degree of the FFT you wish to compute.
+%   degree: integer, degree of the FFT you wish to compute.
 %
 %
-%   Outputs:
+% Outputs:
 %
-% 	degreeFFT: vector of complex, the FFT of the specified degree.
+%   degreeFFT: vector of complex, the FFT of the specified degree.
 
 function degreeFFT = inputFFTDegree(X, freqIndex, degree)
     
@@ -25,6 +25,4 @@ function degreeFFT = inputFFTDegree(X, freqIndex, degree)
     else
        degreeFFT = X(freqIndex{1}); 
     end
-
-
 end
