@@ -9,9 +9,9 @@
 %
 % Inputs:
 %
-%   numberOfRows is the number of subplot rows that the figure will have.
+%   numberOfRows: integer, is the number of subplot rows that the figure will have.
 %
-%   numberOfCols is the number of subplot columns that the figure will have.
+%   numberOfCols: integer, is the number of subplot columns that the figure will have.
 %
 %   unit: string, length unit to be used. Possible units are 'pixels', 'normalized', 'inches', 
 %   'centimeters', 'points' and 'characters'.

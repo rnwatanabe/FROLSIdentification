@@ -9,7 +9,7 @@
 %   
 %   Hn: cell, contains all the GFRFs until the specified degree.
 %
-%   X: vector of complex, the FFT of the input signal obtained with the computeSignalFFT function.
+%   U: vector of complex, the FFT of the input signal obtained with the computeSignalFFT function.
 %
 %   maxDegree: integer, the maximal degree to have the NOFRF computed.
 %
@@ -33,25 +33,28 @@
 %
 %   f: vector of floats, the vector of frequencies.
 
-function [NOFRF, f] = computeNOFRF(Hn, X, maxDegree, Fs, fres, fmin, fmax, f_inputMin, f_inputMax)
+function [NOFRF, f] = computeNOFRF(Hn, U, maxDegree, Fs, fres, fmin, fmax, f_inputMin, f_inputMax)
     H1 = matlabFunction(Hn{1});
-    fv = [-f_inputMax:fres:-f_inputMin-fres f_inputMin:fres:f_inputMax];
-    f = fmin:fres:fmax; 
+    fv = -Fs/2:fres:Fs/2;
+    %fv = [-f_inputMax:fres:-f_inputMin f_inputMin:fres:f_inputMax];
+    f_out = fmin:fres:fmax; 
     
-    NOFRF = zeros(size(f));
-    for j = 1:length(f)
-        validFrequencyIndices = abs(fv-f(j))<=1e-3;
-        if ~isempty(X(validFrequencyIndices))
-            NOFRF(j) = 2 * H1(f(j)) * (X(validFrequencyIndices)) ;
+    NOFRF = zeros(size(f_out));
+    for j = 1:length(f_out)
+        validFrequencyIndices = abs(fv-f_out(j))<=1e-3 & f_out(j)>=f_inputMin & f_out(j) <= f_inputMax;
+        if ~isempty(U(validFrequencyIndices))
+            NOFRF(j) = 2 * H1(f_out(j)) * U(validFrequencyIndices);
         end
     end
     
     for i = 2:maxDegree
        if  logical(Hn{i} ~= 0)
            HnFunction = matlabFunction(Hn{i});
-           for j = 1:length(f)
-               NOFRF(j) = NOFRF(j) +  2 * computeDegreeNOFRF(HnFunction, X, Fs, i, f(j), fres, f_inputMin, f_inputMax);
+           for j = 1:length(f_out)
+               NOFRF(j) = NOFRF(j) +  2 * computeDegreeNOFRF(HnFunction, U, Fs, i, f_out(j), fres, f_inputMin, f_inputMax);
            end 
        end
-    end  
+    end 
+    
+    f = f_out;
 end

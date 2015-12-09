@@ -32,9 +32,11 @@
 %   NOFRF: vector of complex, the NOFRF of the system for the given input at
 %   each frequency.
 %
+%   U: vector of complex, the FFT of the input signal u.
+%
 %   f: vector of floats, the vector of frequencies.
 
-function [NOFRF, f] = computeSystemNOFRF(GFRF, u, Fs, fres, degree, fmin, fmax, f_inputMin, f_inputMax)
+function [NOFRF, U, f] = computeSystemNOFRF(GFRF, u, Fs, fres, degree, fmin, fmax, f_inputMin, f_inputMax)
 
     U = computeSignalFFT(u, Fs, fres);
     [NOFRF, f] = computeNOFRF(GFRF, U, degree, Fs, fres, fmin, fmax, f_inputMin, f_inputMax);       

@@ -9,7 +9,7 @@
 %
 %   HnFunction: function, is the function of the the GFRFs of the specified degree.
 %
-%   X: vector of complex, the FFT of the input signal obtained with the computeSignalFFT function.
+%   U: vector of complex, the FFT of the input signal obtained with the computeSignalFFT function.
 %
 %   Fs: float, the sampling frequency, in Hz.
 %
@@ -28,7 +28,7 @@
 %   
 %   DegreeOFRF: vector of complex,  the NOFRF relative to the specified degree.
 
-function DegreeNOFRF = computeDegreeNOFRF(HnFunction, X, Fs, degree, f, fres, f_inputMin, f_inputMax)
+function DegreeNOFRF = computeDegreeNOFRF(HnFunction, U, Fs, degree, f, fres, f_inputMin, f_inputMax)
         
         fv = -Fs/2:fres:Fs/2;
         
@@ -47,5 +47,5 @@ function DegreeNOFRF = computeDegreeNOFRF(HnFunction, X, Fs, degree, f, fres, f_
         end
 
         eval(['DegreeNOFRF = HnFunction(' fnCall ');']);
-        DegreeNOFRF = sum(DegreeNOFRF .* inputFFTDegree(X, freqIndex, degree));                
+        DegreeNOFRF = sum(DegreeNOFRF .* inputFFTDegree(U, freqIndex, degree));                
 end

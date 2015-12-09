@@ -95,7 +95,7 @@ function plotGFRF(GFRF, fmax, slices, unit, figureHeight, figureWidth, gapVertic
                 plotColoredLine(scaleFreq(freq), scaleGFRF(Hfun(freq)), zeros(size(freq)), f, map, 'x', 2)
                 ylimit = get(gca,'YLim');
                 hold on
-                set(gca, 'Box','On', 'LineWidth', 2,'XTickLabelMode','auto', 'YTickLabelMode','auto');
+                set(gca, 'Box','Off', 'LineWidth', 2,'XTickLabelMode','auto', 'YTickLabelMode','auto');
                 plotColoredLine(scaleFreq(freq), ylimit(1)*ones(size(freq)), zeros(size(freq)), scaleFreq(f), map, 'x', 10)                    
                 xlabel('f (Hz)');
                 ylabel('|H_1|');                
@@ -114,7 +114,7 @@ function plotGFRF(GFRF, fmax, slices, unit, figureHeight, figureWidth, gapVertic
                     ylimit = get(gca,'YLim');
                     xlimit = get(gca,'XLim');
                     zlimit = get(gca,'ZLim');
-                    set(ha(1), 'CameraPosition', [3 * xlimit(2) 3 * ylimit(1) 1.7 * zlimit(2)])
+                    set(ha(1), 'CameraPosition', [3 * xlimit(2) 3.3 * ylimit(1) 1.4 * zlimit(2)])
                     plotColoredLine(scaleFreq(freq/2), ylimit(1)*ones(size(freq)), zlimit(1)*ones(size(freq)), scaleFreq(f), map, 'x', 10)
                     plotColoredLine(xlimit(2)*ones(size(freq)), scaleFreq(freq/2), zlimit(1)*ones(size(freq)), scaleFreq(f), map, 'y', 10)
                     colormap(map)
@@ -129,7 +129,7 @@ function plotGFRF(GFRF, fmax, slices, unit, figureHeight, figureWidth, gapVertic
                     fRes = nthroot(fmax/nargin(Hfun) * 2 / slices, nargin(Hfun) - 2);
                     fslice = 0:fRes:fmax/nargin(Hfun); 
                     f0Index = length(fslice) - round(slices/2);
-                    fslice = [fslice(end:-1:2) fslice];
+                    fslice = [-fslice(end:-1:2) fslice];
                     for j = 0:length(ha)-1
                         axes(ha(j+1))
                         indices = dec2base(j+f0Index, length(fslice), nargin(Hfun)-2);
@@ -154,7 +154,7 @@ function plotGFRF(GFRF, fmax, slices, unit, figureHeight, figureWidth, gapVertic
                         ylimit = get(gca,'YLim');
                         xlimit = get(gca,'XLim');
                         zlimit = get(gca,'ZLim');
-                        set(ha(j+1), 'CameraPosition', [3 * xlimit(2) 3 * ylimit(1) 1.7 * zlimit(2)])
+                        set(ha(j+1), 'CameraPosition', [3 * xlimit(2) 3.3 * ylimit(1) 1.4 * zlimit(2)])
                         plotColoredLine(scaleFreq(freq/nargin(Hfun)), ylimit(1)*ones(size(freq)), zlimit(1)*ones(size(freq)), scaleFreq(f), map, 'x', 10)
                         plotColoredLine(xlimit(2)*ones(size(freq)), scaleFreq(freq/nargin(Hfun)), zlimit(1)*ones(size(freq)), scaleFreq(f), map, 'y', 10)
                         colormap(map)
@@ -173,7 +173,7 @@ function plotGFRF(GFRF, fmax, slices, unit, figureHeight, figureWidth, gapVertic
                     set(gca,'Position', p,'Box','Off', 'LineWidth', 2);
                 end
             end
-            print([fileName num2str(nargin(Hfun))], '-depsc', '-r600','-cmyk')
+            print([fileName num2str(nargin(Hfun))], '-depsc', '-r300','-cmyk')
         end
     end
 end

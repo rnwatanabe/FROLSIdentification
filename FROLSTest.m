@@ -7,11 +7,11 @@ clc
 
 %% steps to perform
 identifyModel = false;
-identifyNoise = false;
+identifyNoise =  false;
 identifyComplete = false;
-computeGFRF = true; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
+computeGFRF = false; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
                     %identification will work normally
-computeNOFRF = false; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
+computeNOFRF = true; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
                     %identification will work normally
 
 %% data
@@ -122,7 +122,7 @@ disp(identModel.finalCoeff)
 %%
 
 if computeGFRF
-    GFRFdegree = 4; % If your identified system has terms with inputs and outputs, the GFRF will be non-null for 
+    GFRFdegree = 3; % If your identified system has terms with inputs and outputs, the GFRF will be non-null for 
     %degrees higher than the maximal polynomial degree. In this case, a good number
     %is to add one to your maximal polynomial degree. If you have only
     %inputs or outputs terms, the GFRFdegree will be the maximal
@@ -137,9 +137,9 @@ if computeGFRF
         disp(['GFRF of order ' num2str(j) ': '])
         pretty(identModel.GFRF{j})
     end
-    %GFRF2LaTeX(identModel.GFRF, 'script', 'GFRF.tex', 3);
+    GFRF2LaTeX(identModel.GFRF, 'script', 'GFRF.tex', 3);
     plotGFRF(identModel.GFRF, 50, 4, 'centimeters', 16, 16, 2, 1, 1,...
-                2, 2, 0.3, 'linear', 'linear');
+                2, 2, 0.3, 'linear', 'linear', 'GFRFExample');
 else
     load(['testIdentifiedModel' num2str(Fs) '.mat']);      
 end
@@ -148,18 +148,18 @@ end
 %%
 
 if computeNOFRF
-    % build the input signal you want to konow what the system output will
+    % build the input signal you want to know what the system output will
     % be. In this case is the sum of two sinusoids.
     t = 0:1/Fs:10000/Fs-1/Fs;
     u = cos(2*pi*20*t) + 0*cos(2*pi*5*t);
     %NOFRF computation
     fres = 0.1; % the frequency resolution of the NOFRF
     fmin = 0; % lower frequency limit of the NOFRF
-    fmax = 50; % upper frequency limit of the NOFRF
-    f_inputMin = 0;
-    f_inputMax = 50;
+    fmax = 6; % upper frequency limit of the NOFRF
+    f_inputMin = 18;
+    f_inputMax =22;
 
-    [NOFRF, f] = computeSystemNOFRF(identModel.GFRF, u', identModel.Fs, fres, identModel.GFRFdegree, fmin, fmax,...
+    [NOFRF, U, f] = computeSystemNOFRF(identModel.GFRF, u', identModel.Fs, fres, identModel.GFRFdegree, fmin, fmax,...
         f_inputMin, f_inputMax); 
     
     % true output FFT. In the case of you are using a real dataset, you can
