@@ -128,25 +128,27 @@ function plotGFRF(GFRF, fmax, slices, unit, figureHeight, figureWidth, gapVertic
                         marginBottom, marginLeft, marginRight + 1.9);
                     fRes = nthroot(fmax/nargin(Hfun) * 2 / slices, nargin(Hfun) - 2);
                     fslice = 0:fRes:fmax/nargin(Hfun); 
-                    f0Index = length(fslice) - round(slices/2);
                     fslice = [-fslice(end:-1:2) fslice];
+                    f0Index = floor((length(fslice)^(nargin(Hfun)-2)) / slices);
                     for j = 0:length(ha)-1
                         axes(ha(j+1))
-                        indices = dec2base(j+f0Index, length(fslice), nargin(Hfun)-2);
+                        indices = dec2base((j+1)*f0Index, length(fslice), nargin(Hfun)-2);
                         fString = 'F1,F2';
                         colorMapString = 'F1+F2'; 
-                        titleString = '{';
+                        titleString = cell(1, ceil((nargin(Hfun)-2) / 3));
+                        for k = 1:length(titleString)
+                            titleString{k} = '';
+                        end
                         for k = 1:nargin(Hfun)-2
                             fString = strcat(fString, ',fslice(', num2str(base2dec(indices(k), length(fslice)) + 1), ')');
                             colorMapString = strcat(colorMapString, ' + fslice(', num2str(base2dec(indices(k), length(fslice)) + 1), ')');
                             fColorValueString = [num2str(interp1(f, map(:,1), fslice(base2dec(indices(k), length(fslice)) + 1))) ' ' ...
                                 num2str(interp1(f, map(:,2), fslice(base2dec(indices(k), length(fslice)) + 1))) ' ' ...
                                 num2str(interp1(f, map(:,3), fslice(base2dec(indices(k), length(fslice)) + 1)))];
-                            titleString = strcat(titleString, '\color[rgb]{', fColorValueString ,'}f_', num2str(k+2), '=', ...
+                            titleString{ceil(k / 3)} = strcat(titleString{ceil(k / 3)}, '\color[rgb]{', fColorValueString ,'}f_', num2str(k+2), '=', ...
                                 num2str(fslice(base2dec(indices(k), length(fslice)) + 1)), ',' );
                         end
-                        titleString = titleString(1:end-1);
-                        titleString = strcat(titleString,'}');
+                        titleString{end} = titleString{end}(1:end-1);
                         [F1, F2] = meshgrid(freq/nargin(Hfun),freq/nargin(Hfun));
                         eval(['h = surf(scaleFreq(F1), scaleFreq(F2), scaleGFRF(Hfun(' fString ')),' colorMapString ');']); 
                         set(h, 'EdgeColor', 'none', 'FaceColor','interp')

@@ -9,9 +9,9 @@ clc
 identifyModel = false;
 identifyNoise =  false;
 identifyComplete = false;
-computeGFRF = false; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
+computeGFRF = true; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
                     %identification will work normally
-computeNOFRF = true; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
+computeNOFRF = false; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
                     %identification will work normally
 
 %% data
@@ -122,7 +122,7 @@ disp(identModel.finalCoeff)
 %%
 
 if computeGFRF
-    GFRFdegree = 3; % If your identified system has terms with inputs and outputs, the GFRF will be non-null for 
+    GFRFdegree = 5; % If your identified system has terms with inputs and outputs, the GFRF will be non-null for 
     %degrees higher than the maximal polynomial degree. In this case, a good number
     %is to add one to your maximal polynomial degree. If you have only
     %inputs or outputs terms, the GFRFdegree will be the maximal
@@ -155,9 +155,9 @@ if computeNOFRF
     %NOFRF computation
     fres = 0.1; % the frequency resolution of the NOFRF
     fmin = 0; % lower frequency limit of the NOFRF
-    fmax = 6; % upper frequency limit of the NOFRF
-    f_inputMin = 18;
-    f_inputMax =22;
+    fmax = 50; % upper frequency limit of the NOFRF
+    f_inputMin = [18;19;17];
+    f_inputMax =[22;21;23];
 
     [NOFRF, U, f] = computeSystemNOFRF(identModel.GFRF, u', identModel.Fs, fres, identModel.GFRFdegree, fmin, fmax,...
         f_inputMin, f_inputMax); 

@@ -19,9 +19,15 @@
 %	
 %   fres: float, the frequency resolution of the FFT, in Hz.
 %
-%   f_inputMin: float, lower frequency limit of the input signal, in Hz.
+%   f_inputMin: vector of floats, lower frequency limit of the input signal, in Hz.
+%   You can define one value for each degree or simply one value for all
+%   degrees. For example: f_inputMin = [19;19;0;0;19;0] if you will use
+%   GFRFs up to degree six.
 %
-%   f_inputMax: float, upper frequency limit of the input signal, in Hz.
+%   f_inputMax: vector of floats, upper frequency limit of the input signal, in Hz.
+%   You can define one value for each degree or simply one value for all
+%   degrees. For example: f_inputMax = [21;21;2;2;21;2] if you will use
+%   GFRFs up to degree six.
 %
 %
 % Output:
