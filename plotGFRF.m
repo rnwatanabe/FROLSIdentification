@@ -4,8 +4,8 @@
 % written by: Renato Naville Watanabe 
 %
 %
-%   plotGFRF(GFRF, fmax, slices, unit, figureHeight, figureWidth, gapVertical, gapHorizontal, marginTop,...
-%   marginBottom, marginLeft, marginRight, freqAxisScaling, GFRFAxisScaling, fileName)
+%   plotGFRF(GFRF, fmax, numberOfRows, numberOfCols, unit, figureHeight, figureWidth, gapVertical, gapHorizontal, marginTop,...
+%                marginBottom, marginLeft, marginRight, freqAxisScaling, GFRFAxisScaling, fileName)
 %   
 % Inputs:
 %
@@ -13,7 +13,11 @@
 %
 %   fmax: float, maximal frequency to be plotted.
 %
-%   slices: integer, number of slices of the GFRFs with degree higher than two.
+%   numberOfRows: integer, is the number of subplot rows that the figure
+%   will have. Used when the number of inputs is higher than two.
+%
+%   numberOfCols: integer, is the number of subplot columns that the figure
+%   will have. Used when the number of inputs is higher than two.
 %
 %   unit: string, length unit to be used. Possible units are 'pixels', 'normalized', 'inches', 
 %   'centimeters', 'points' and 'characters'.
@@ -44,7 +48,7 @@
 
 
 
-function plotGFRF(GFRF, fmax, slices, unit, figureHeight, figureWidth, gapVertical, gapHorizontal, marginTop,...
+function plotGFRF(GFRF, fmax, numberOfRows, numberOfCols, unit, figureHeight, figureWidth, gapVertical, gapHorizontal, marginTop,...
                 marginBottom, marginLeft, marginRight, freqAxisScaling, GFRFAxisScaling, fileName)
     
     %% scale functions
@@ -122,8 +126,7 @@ function plotGFRF(GFRF, fmax, slices, unit, figureHeight, figureWidth, gapVertic
                     axes(ha(end))
                     set(gca,'Position', p,'Box','Off', 'LineWidth', 2);                    
                 else
-                    numberOfRows = ceil(sqrt(slices));
-                    numberOfCols = ceil(sqrt(slices));                
+                    slices = numberOfCols * numberOfRows;      
                     ha = measuredPlot(numberOfRows, numberOfCols, unit, figureHeight, figureWidth, gapVertical, gapHorizontal, marginTop, ...
                         marginBottom, marginLeft, marginRight + 1.9);
                     fRes = nthroot(fmax/nargin(Hfun) * 2 / slices, nargin(Hfun) - 2);

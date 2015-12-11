@@ -3,7 +3,7 @@
 %
 % written by: Renato Naville Watanabe 
 %
-% [NOFRF, f] = computeSystemNOFRF(GFRF, u, Fs, fres, degree, fmin, fmax)
+% [NOFRF, U, f] = computeSystemNOFRF(GFRF, u, Fs, fres, minDegree, maxDegree, fmin, fmax, f_inputMin, f_inputMax)
 %	
 %   
 % Inputs:
@@ -16,7 +16,9 @@
 %
 %   fres: float, frequency resolution of the FFT, in Hz.
 %
-%   degree: integer, maximal degree to have the NOFRF computed.
+%   minDegree: integer, minimal degree to have the NOFRF computed.
+%
+%   maxDegree: integer, maximal degree to have the NOFRF computed.
 %
 %   fmin: float, lower frequency limit of the NOFRF computation, in Hz.
 %
@@ -42,9 +44,9 @@
 %
 %   f: vector of floats, the vector of frequencies.
 
-function [NOFRF, U, f] = computeSystemNOFRF(GFRF, u, Fs, fres, degree, fmin, fmax, f_inputMin, f_inputMax)
+function [NOFRF, U, f] = computeSystemNOFRF(GFRF, u, Fs, fres, minDegree, maxDegree, fmin, fmax, f_inputMin, f_inputMax)
 
     U = computeSignalFFT(u, Fs, fres);
-    [NOFRF, f] = computeNOFRF(GFRF, U, degree, Fs, fres, fmin, fmax, f_inputMin, f_inputMax);       
+    [NOFRF, f] = computeNOFRF(GFRF, U, minDegree, maxDegree, Fs, fres, fmin, fmax, f_inputMin, f_inputMax);       
     
 end

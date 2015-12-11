@@ -2,7 +2,7 @@
 %
 % written by: Renato Naville Watanabe 
 %
-% DegreeNOFRF = computeDegreeNOFRF(HnFunction, X, Fs, degree, f, fres)
+% DegreeNOFRF = computeDegreeNOFRF(HnFunction, U, Fs, degree, f, fres, f_inputMin, f_inputMax)
 %	
 %   
 % Inputs:

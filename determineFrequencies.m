@@ -2,7 +2,7 @@
 %
 % written by: Renato Naville Watanabe 
 %
-% fVectorValid = determineFrequencies(f, fres, n, Fs)
+% fVector = determineFrequencies(f, fres, n, f_inputMin, f_inputMax)
 %	
 %
 % Inputs:

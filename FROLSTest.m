@@ -9,9 +9,9 @@ clc
 identifyModel = false;
 identifyNoise =  false;
 identifyComplete = false;
-computeGFRF = true; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
+computeGFRF = false; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
                     %identification will work normally
-computeNOFRF = false; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
+computeNOFRF = true; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
                     %identification will work normally
 
 %% data
@@ -138,7 +138,7 @@ if computeGFRF
         pretty(identModel.GFRF{j})
     end
     GFRF2LaTeX(identModel.GFRF, 'script', 'GFRF.tex', 3);
-    plotGFRF(identModel.GFRF, 50, 4, 'centimeters', 16, 16, 2, 1, 1,...
+    plotGFRF(identModel.GFRF, 50, 2, 2, 'centimeters', 16, 16, 2, 1, 1,...
                 2, 2, 0.3, 'linear', 'linear', 'GFRFExample');
 else
     load(['testIdentifiedModel' num2str(Fs) '.mat']);      
@@ -159,7 +159,7 @@ if computeNOFRF
     f_inputMin = [18;19;17];
     f_inputMax =[22;21;23];
 
-    [NOFRF, U, f] = computeSystemNOFRF(identModel.GFRF, u', identModel.Fs, fres, identModel.GFRFdegree, fmin, fmax,...
+    [NOFRF, U, f] = computeSystemNOFRF(identModel.GFRF, u', identModel.Fs, fres, 1, identModel.GFRFdegree, fmin, fmax,...
         f_inputMin, f_inputMax); 
     
     % true output FFT. In the case of you are using a real dataset, you can
