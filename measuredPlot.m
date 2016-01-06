@@ -31,6 +31,13 @@
 %   marginLeft: float, margin in the left side of the figure, in the established unit.
 %
 %   marginRight: float, margin in the right side of the figure, in the established unit.
+%
+%
+% Outputs:
+%
+%   ha: vector of floats, each number is the identifier of each axes built
+%   by the function. To make an specific axes active use the function axes. For example, to
+%   make the axes 2 active, use axes(ha(2)).
 
 
 

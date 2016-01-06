@@ -75,16 +75,13 @@ function plotGFRF(GFRF, fmax, numberOfRows, numberOfCols, unit, figureHeight, fi
     freq = [linspace(-fmax, 0, 100) linspace(0, fmax, 100)];
     map = hot(length(f)); map = [map(end:-1:2,:);map]; 
     f = [-f(end:-1:2) f];
-    
-
     %% Octave verification
     V = ver;
     for i = 1:length(V)
         if (strcmp(V(i).Name,'Octave'))
             pkg load symbolic;
         end
-    end
-    
+    end     
     %%
     numberOfGFRFs = length(GFRF);
     for i = 1:numberOfGFRFs
@@ -96,10 +93,10 @@ function plotGFRF(GFRF, fmax, numberOfRows, numberOfCols, unit, figureHeight, fi
                         marginBottom, marginLeft, marginRight);
 
                 axes(ha(1));     
-                plotColoredLine(scaleFreq(freq), scaleGFRF(Hfun(freq)), zeros(size(freq)), f, map, 'x', 2)
+                plotColoredLine(scaleFreq(freq), scaleGFRF(Hfun(freq)), zeros(size(freq)), scaleFreq(f), map, 'x', 2)
                 ylimit = get(gca,'YLim');
                 hold on
-                set(gca, 'Box','Off', 'LineWidth', 2,'XTickLabelMode','auto', 'YTickLabelMode','auto');
+                set(gca, 'Box', 'Off', 'LineWidth', 2, 'XTickLabelMode', 'auto', 'YTickLabelMode', 'auto');
                 plotColoredLine(scaleFreq(freq), ylimit(1)*ones(size(freq)), zeros(size(freq)), scaleFreq(f), map, 'x', 10)                    
                 xlabel('f (Hz)');
                 ylabel('|H_1|');                
