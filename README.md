@@ -24,8 +24,8 @@ Notebook
 
 An explanation of the algorithm implementation is also available in the format of [notebook](http://nbviewer.ipython.org/github/rnwatanabe/FROLSIdentification/blob/master/FROLSExampleNotebook_Matlab.ipynb). You can also download the notebook file and execute in your own computer. In this case you will need to install the [Jupyter environment](http://jupyter.org/) and either the [Matlab or Octave kernel](https://github.com/ipython/ipython/wiki/IPython-kernels-for-other-languages).
 
-Citation
-----------
+How to cite this work
+---------------------
 
 If you use the codes from this repository, please cite the following paper as the used implementation of the algorithm:
 
