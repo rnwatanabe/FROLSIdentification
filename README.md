@@ -1,9 +1,11 @@
 # FROLSIdentification
 
+Renato Naville Watanabe
+
 ##Files to perform discrete nonlinear system identification and analysis
 
 
-The files in this repository were written to perform the system identification of nonlinear systems. The method used is the algorithm known as Forward Regression with Orthogonal Least Squares (FROLS), developed by Stephen Billings and his group. All the files were written by me, except the v2struct.m file, used to deal with the structs from Matlab.
+The files in this repository were written to perform the system identification of nonlinear systems. An updated version can be found in [https://github.com/rnwatanabe/FROLSIdentification](https://github.com/rnwatanabe/FROLSIdentification). The method used is the algorithm known as Forward Regression with Orthogonal Least Squares (FROLS), developed by Stephen Billings and his group. All the files were written by me, except the v2struct.m file, used to deal with the structs from Matlab.
 
 How to use the files 
 -------------------
@@ -38,7 +40,10 @@ and the following  book as the source of the algorithm:
 "S. A. Billings, Nonlinear System Identification: NARMAX Methods in the Time, Frequency and Spatio-temporal Domains. Chichester, UK: John Wiley & Sons, Ltd,, 2013."
 
 
+License
+-------
 
+This work is licensed under the [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
 
 
 
