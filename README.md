@@ -35,9 +35,6 @@ If you use the codes from this repository, please cite the following paper as th
 neuromusculoskeletal model. In: 5th IEEE RAS & EMBS International Conference on
 Biomedical Robotics and Biomechatronics, 2014. p. 610–615."
 
-and the following  book as the source of the algorithm: 
-
-"S. A. Billings, Nonlinear System Identification: NARMAX Methods in the Time, Frequency and Spatio-temporal Domains. Chichester, UK: John Wiley & Sons, Ltd,, 2013."
 
 
 License
