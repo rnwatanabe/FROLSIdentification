@@ -139,7 +139,7 @@ if computeGFRF
     end
     GFRF2LaTeX(identModel.GFRF, 'script', 'GFRF.tex', 3);
     plotGFRF(identModel.GFRF, 50, 2, 2, 'centimeters', 16, 16, 2, 1, 1,...
-                2, 2, 0.3, 'linear', 'linear', 'GFRFExample');
+                2, 2, 0.3, 'linear', 'linear');
 else
     load(['testIdentifiedModel' num2str(Fs) '.mat']);      
 end

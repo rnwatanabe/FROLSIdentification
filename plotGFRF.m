@@ -5,7 +5,7 @@
 %
 %
 %   plotGFRF(GFRF, fmax, numberOfRows, numberOfCols, unit, figureHeight, figureWidth, gapVertical, gapHorizontal, marginTop,...
-%                marginBottom, marginLeft, marginRight, freqAxisScaling, GFRFAxisScaling, fileName)
+%                marginBottom, marginLeft, marginRight, freqAxisScaling, GFRFAxisScaling)
 %   
 % Inputs:
 %
@@ -43,13 +43,12 @@
 %
 %   GFRFAxisScaling: string, scale to be used in the GFRF axis.
 %   Possible strings are: 'linear', 'db' and 'log'.
-%
-%   fileName: string, name of the files to store the plots.       
+  
 
 
 
 function plotGFRF(GFRF, fmax, numberOfRows, numberOfCols, unit, figureHeight, figureWidth, gapVertical, gapHorizontal, marginTop,...
-                marginBottom, marginLeft, marginRight, freqAxisScaling, GFRFAxisScaling, fileName)
+                marginBottom, marginLeft, marginRight, freqAxisScaling, GFRFAxisScaling)
     
     %% scale functions
     function scaledF = scaleFreq(f)
@@ -85,7 +84,7 @@ function plotGFRF(GFRF, fmax, numberOfRows, numberOfCols, unit, figureHeight, fi
     %%
     numberOfGFRFs = length(GFRF);
     for i = 1:numberOfGFRFs
-        if  logical(GFRF{i} ~= 0)
+        if  ~isequal(GFRF{i}, 0)
             Hfun = matlabFunction((abs(GFRF{i})));
             figure
             if nargin(Hfun) == 1
@@ -175,7 +174,7 @@ function plotGFRF(GFRF, fmax, numberOfRows, numberOfCols, unit, figureHeight, fi
                     set(gca,'Position', p,'Box','Off', 'LineWidth', 2);
                 end
             end
-            print([fileName num2str(nargin(Hfun))], '-depsc', '-r300','-cmyk')
+            %print([fileName num2str(nargin(Hfun))], '-dpdf', '-r100')
         end
     end
 end
