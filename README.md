@@ -12,7 +12,7 @@ How to use the files
 
 Download all the files in the same directory. The files were written to run in the Matlab<sup>&reg;</sup> platform, so if you want to run them on Matlab<sup>&reg;</sup>, you will need a license of the Matlab<sup>&reg;</sup> software. To run the functions that compute the Generalized Frequency Response Function (GFRF) and Nonlinear Output Frequency Response Function (NOFRF), you will need a license of the Matlab<sup>&reg;</sup> Symbolic Math Toolbox<sup>&trade;</sup>. 
 
-Once you have downloaded all the files in the same directory, run the FROLSTest.m file.
+Once you have downloaded all the files in the same directory, run the FROLSTest.m file to execute an example.
 
 GNU Octave
 ---------
