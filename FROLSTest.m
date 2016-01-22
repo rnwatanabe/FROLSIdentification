@@ -6,10 +6,10 @@ clc
 
 
 %% steps to perform
-identifyModel = false;
-identifyNoise =  false;
-identifyComplete = false;
-computeGFRF = false; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
+identifyModel = true;
+identifyNoise =  true;
+identifyComplete = true;
+computeGFRF = true; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
                     %identification will work normally
 computeNOFRF = true; % if you do not have the Symbolic Toolbox,set this to false or use the Octave system. The other parts of the system 
                     %identification will work normally
@@ -122,10 +122,10 @@ disp(identModel.finalCoeff)
 %%
 
 if computeGFRF
-    GFRFdegree = 5; % If your identified system has terms with inputs and outputs, the GFRF will be non-null for 
+    GFRFdegree = 3; % If your identified system has terms with inputs and outputs, the GFRF will be non-null for 
     %degrees higher than the maximal polynomial degree. In this case, a good number
     %is to add one to your maximal polynomial degree. If you have only
-    %inputs or outputs terms, the GFRFdegree will be the maximal
+    %input or output terms, the GFRFdegree will be the maximal
     %polynomial degree.
     Hn = computeSignalsGFRF(identModel.terms, identModel.Fs, identModel.finalCoeff, GFRFdegree);
     %%
@@ -156,8 +156,8 @@ if computeNOFRF
     fres = 0.1; % the frequency resolution of the NOFRF
     fmin = 0; % lower frequency limit of the NOFRF
     fmax = 50; % upper frequency limit of the NOFRF
-    f_inputMin = [18;19;17];
-    f_inputMax =[22;21;23];
+    f_inputMin = 18;
+    f_inputMax = 22;
 
     [NOFRF, U, f] = computeSystemNOFRF(identModel.GFRF, u', identModel.Fs, fres, 1, identModel.GFRFdegree, fmin, fmax,...
         f_inputMin, f_inputMax); 
@@ -181,48 +181,13 @@ if computeNOFRF
     axes(ha(1))
     plot(f, (abs(NOFRF))); 
     set(gca, 'LineWidth',2,'Box', 'On')
-    xlabel({'f (Hz)','(a)'});ylabel('|Y(f)|')
+    xlabel({'f (Hz)','(a)'});ylabel('|Y(f)|');xlim([-1 50]);
     axes(ha(2))
-    plot(f4, 2*(abs(Y))); xlim([-0.1 50]);
+    plot(f4, 2*(abs(Y))); xlim([-1 50]);
     set(gca, 'LineWidth',2,'Box', 'On')
     xlabel({'f (Hz)','(b)'});
     %%
     save(['testIdentifiedModel' num2str(Fs) '.mat'], 'identModel');
 else
     load(['testIdentifiedModel' num2str(Fs) '.mat']); 
-end
-
-figure
-ha = measuredPlot(2, 3, 'centimeters', 16, 16, 1.4, 1.2, 0.3, ...
-    2, 1.8, 0.3);
-
-f = [2 5 10 15 20 25];
-maxValue = 0;
-for i = 1:length(f)
-    axes(ha(i))
-    t = 0:1/Fs:10000/Fs-1/Fs;
-    u = cos(2*pi*f(i)*t) + 0*cos(2*pi*5*t);
-    y = zeros(size(u));
-    for k = 5:length(y)
-        % system simulation for this input. This difference equation must
-        % be the same you used for the identification
-        y(k) = 0.1*y(k-1) - 0.5*u(k-1)*y(k-1) + 0.1*u(k-2);
-    end
-    Y = fft(y(1000:end)); Y = fftshift(Y)/length(Y);
-    maxValue = max(max(2*abs(Y)), maxValue);
-    f4 = -Fs/2:Fs/length(Y):Fs/2-Fs/length(Y);    
-    plot(f4, 2*(abs(Y))); xlim([-0.1 50]);
-    set(gca, 'LineWidth',2,'Box', 'On');
-    if (i>3)
-        xlabel({'f (Hz)',['(' 96 + i ')']});
-    else
-        xlabel(['(' 96 + i ')']);
-    end
-    if i == 1 || i == 4
-        ylabel('|Y(f)|') 
-    end
-    for j = 1:i
-        axes(ha(j))
-        ylim([0 1.2 * maxValue]);
-    end
 end
