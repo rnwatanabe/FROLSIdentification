@@ -35,7 +35,7 @@ If you use the codes from this repository, please cite the following paper as th
 neuromusculoskeletal model. In: 5th IEEE RAS & EMBS International Conference on
 Biomedical Robotics and Biomechatronics, 2014. p. 610–615."
 
-
+You can find the Bibtex file of this reference [here](https://github.com/rnwatanabe/FROLSIdentification/blob/master/ref.bib).
 
 License
 -------
