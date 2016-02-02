@@ -37,6 +37,11 @@ Biomedical Robotics and Biomechatronics, 2014. p. 610–615."
 
 You can find the Bibtex file of this reference [here](https://github.com/rnwatanabe/FROLSIdentification/blob/master/ref.bib).
 
+Funding
+-------------------------
+
+The software presented here was fully funded by São Paulo Research Foundation (FAPESP, process number [2011/21103-7](http://www.bv.fapesp.br/32854)).
+
 License
 -------
 
