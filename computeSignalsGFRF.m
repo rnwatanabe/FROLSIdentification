@@ -30,7 +30,7 @@ function Hn = computeSignalsGFRF(Da, Fs, a, degree)
     end
 
     subjects = size(a, 2); 
-    [Da, a] = removeConstant(Da, a);
+    [Da, a] = removeConstant(Da, a, zeros(size(a)));
     
     Hn = cell(1, subjects);
     
