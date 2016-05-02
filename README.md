@@ -40,7 +40,7 @@ You can find the Bibtex file of this reference [here](https://github.com/rnwatan
 Funding
 -------------------------
 
-The development of the software presented here was fully funded by the  São Paulo Research Foundation (FAPESP, grant number [2011/21103-7](http://www.bv.fapesp.br/32854)).
+The development of the software presented here was fully funded by the  São Paulo Research Foundation (FAPESP, grant number [2011/21103-7](http://www.bv.fapesp.br/en/bolsas/132074/model-identification-for-a-human-postural-control-study/)).
 
 License
 -------
