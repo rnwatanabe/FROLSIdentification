@@ -19,6 +19,23 @@
 % Output:
 %
 %   beta: vector of floats, coefficients of the chosen terms.
+%
+%
+% Globals:
+%
+%   l: vector of integers, indices of the chosen terms.
+%
+%   err: vector of floats, the error reduction ratio of each chosen term.
+%
+%   ESR: float, the sum of the individual error reduction ratios.
+%
+%   A: matrix of floats, auxiliary matrix in the orthogonalization process. 
+%
+%   q: matrix of floats, matrix with each column being the terms orthogonalized by the Gram-Schmidt process.
+%
+%   g: vector of floats, auxiliary vector in the orthogonalization process.
+%
+%   M0:	integer, number of chosen terms.
 
 
 function beta = mfrols(p, y, pho, s)
