@@ -45,7 +45,7 @@ The development of the software presented here was fully funded by the  São Pau
 License
 -------
 
-This work is licensed under the [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
+This work is licensed under the [GNU GENERAL PUBLIC LICENSE 3](http://choosealicense.com/licenses/gpl-3.0/).
 
 
 
