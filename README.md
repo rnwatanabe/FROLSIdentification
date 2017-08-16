@@ -35,6 +35,10 @@ If you use the codes from this repository, please cite the following paper as th
 neuromusculoskeletal model. In: 5th IEEE RAS & EMBS International Conference on
 Biomedical Robotics and Biomechatronics, 2014. p. 610–615."
 
+If you use the GFRF part of this repository, please cite the following paper as the used implementation of the algorithm:
+
+"WATANABE, R. N, ; KOHN, A.F .(2017). Nonlinear frequency-domain analysis of the transformation of cortical inputs by a motoneuron pool-muscle complex. IEEE Transactions on Neural Systems and Rehabilitation Engineering, 4320(c), 1–1."
+
 You can find the Bibtex file of this reference [here](https://github.com/rnwatanabe/FROLSIdentification/blob/master/ref.bib).
 
 Funding
