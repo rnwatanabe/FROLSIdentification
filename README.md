@@ -2,7 +2,8 @@
 
 written by: Renato Naville Watanabe
 
-##Files to perform discrete nonlinear system identification and analysis
+Files to perform discrete nonlinear system identification and analysis
+-------------------
 
 
 The files in this repository were written to perform the system identification of nonlinear systems. An updated version can be found in [https://github.com/rnwatanabe/FROLSIdentification](https://github.com/rnwatanabe/FROLSIdentification). The method used is the algorithm known as Forward Regression with Orthogonal Least Squares (FROLS), developed by Stephen Billings and his group. All the files were written by me, Renato Naville Watanabe, except the v2struct.m file, used to deal with the structs from Matlab.
